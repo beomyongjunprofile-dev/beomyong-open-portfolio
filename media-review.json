@@ -1,0 +1,13 @@
+{
+  "status": "approved_for_publication",
+  "basis": "User requested original media replaced with unbranded code-generated models and wholly fictional dashboard data. No legal clearance is asserted.",
+  "media": [],
+  "components": [
+    "warehouse.html",
+    "warehouse.js",
+    "dashboard.html",
+    "dashboard.css",
+    "dashboard.js"
+  ],
+  "original_media_included": false
+}

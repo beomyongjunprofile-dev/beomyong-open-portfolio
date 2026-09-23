@@ -689,8 +689,8 @@
     const hireLabel = T(l, '인원 충원', 'Headcount added', '増員');
     const markers = hires.map(i => {
       const x = 20 + i * 52, y = 118 - periods[i] * 0.9;
-      return `<line x1="${x}" y1="14" x2="${x}" y2="${y - 6}" stroke="var(--data-soft)" stroke-dasharray="2 3"/>
-        <text x="${x}" y="11" text-anchor="middle" fill="var(--data)" font-size="10">${esc(hireLabel)}</text>`;
+      return `<line x1="${x}" y1="24" x2="${x}" y2="${y - 6}" stroke="var(--data-soft)" stroke-dasharray="2 3"/>
+        <text x="${x}" y="18" text-anchor="middle" fill="var(--data)" font-size="10">${esc(hireLabel)}</text>`;
     }).join('');
     const chart = `<svg viewBox="0 0 620 150" role="img" aria-label="${esc(T(l,
       '분기별 확인 대기 건수가 지난 3년간 인원 충원에도 처리 가능한 수준을 반복해서 넘어서며 계속 늘어난 가상 곡선',
@@ -698,7 +698,7 @@
       '四半期ごとの確認待ち件数が、過去3年間の増員にもかかわらず処理可能な水準を繰り返し超えて増え続けた架空の曲線'))}">
       <line x1="20" y1="${118 - cap * 0.9}" x2="600" y2="${118 - cap * 0.9}"
         stroke="var(--risk)" stroke-dasharray="5 4" stroke-width="1.5"/>
-      <text x="600" y="${118 - cap * 0.9 - 7}" text-anchor="end" fill="var(--risk)">${esc(T(l, '처리 가능 수준', 'Sustainable level', '処理可能な水準'))}</text>
+      <text x="600" y="${118 - cap * 0.9 + 19}" text-anchor="end" fill="var(--risk)">${esc(T(l, '처리 가능 수준', 'Sustainable level', '処理可能な水準'))}</text>
       <polyline points="${pts}" fill="none" stroke="var(--data)" stroke-width="2.5"/>
       ${periods.map((v, i) => `<circle cx="${20 + i * 52}" cy="${118 - v * 0.9}" r="3" fill="${v > cap ? 'var(--risk)' : 'var(--data)'}"/>`).join('')}
       ${markers}
@@ -806,7 +806,7 @@
       T(l, '난이도 순서가 아니라 매핑 여부와 고객 요구 강도의 조합. 모든 단계에서 사람의 최종 확인.',
         'Not a difficulty ladder — a combination of mapping status and customer pressure. Every tier ends with human confirmation.',
         '難易度の序列ではなく、マッピングの有無と顧客圧力の組み合わせ。全段階で人による最終確認。'))}
-      <div class="ev-tbl-wrap ev-tbl-tight" data-ev><table class="ev-tbl">
+      <div class="ev-tbl-wrap ev-tbl-tight" data-ev><table class="ev-tbl ev-tbl-tiers">
         <thead><tr>
           <th scope="col">${esc(T(l, '단계', 'Tier', '段階'))}</th>
           <th scope="col">${esc(T(l, '판단 조건', 'Trigger condition', '判断条件'))}</th>

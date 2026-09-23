@@ -1017,3 +1017,7 @@
   .gov-core { animation: none; }
   .gov-step::after { animation: none; opacity: 0; }
 }
+.ev-figure { margin-top: 18px; }
+.ev-tbl-tiers tbody th[scope=row] { white-space: nowrap; }
+@media (max-width: 640px) { .ev [data-exhibit="backlog"] svg text, [data-exhibit="backlog"] svg text { font-size: 21px; } }
+.ev-yaml.is-compact { max-width: 262px; }

@@ -39,3 +39,7 @@ h1{font-size:clamp(35px,3.6vw,53px);line-height:1.18}h2{font-size:clamp(27px,2.7
 
 .banded-results{margin-top:22px}.banded-results p{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #d5dfd2;padding:14px 0;font-size:12px}.banded-results strong{font-size:16px;font-weight:550;color:#4b5259}@media(max-width:480px){.banded-results p{display:block}.banded-results strong{display:block;margin-top:8px}}
 .dual-path{display:flex;flex-direction:column;gap:12px}.dual-path>p{margin:0;font-size:13px}.dual-path .diagram-viewport{order:initial}.dual-path .exhibit-svg{aspect-ratio:auto;max-height:none}.deck-panel .diagram-viewport{min-width:0}.deck-panel>div{min-width:0}
+html[lang=ko] body{word-break:keep-all;overflow-wrap:break-word}
+html[lang=ja] h1,html[lang=ja] h2,html[lang=ja] .deck-panel h3{word-break:normal;word-break:auto-phrase;overflow-wrap:anywhere}
+.hero>*,.scene>*{min-width:0}
+@media(max-width:480px){nav{min-width:0;gap:8px}#case-switch{max-width:148px;text-overflow:ellipsis}#language{max-width:84px;text-overflow:ellipsis}}

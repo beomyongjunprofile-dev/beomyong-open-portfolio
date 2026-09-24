@@ -1021,3 +1021,9 @@
 .ev-tbl-tiers tbody th[scope=row] { white-space: nowrap; }
 @media (max-width: 640px) { .ev [data-exhibit="backlog"] svg text, [data-exhibit="backlog"] svg text { font-size: 21px; } }
 .ev-yaml.is-compact { max-width: 262px; }
+@media (max-width: 480px) { .ev-yaml pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
+@media (min-width: 851px) {
+  .deck-stack { display: grid; }
+  .deck-stack > .deck-panel { grid-area: 1 / 1; }
+  .deck-stack > .deck-panel[hidden] { display: grid; visibility: hidden; pointer-events: none; }
+}

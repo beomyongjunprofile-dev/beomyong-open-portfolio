@@ -748,7 +748,7 @@
       </div>` +
       `<div class="ev-kv" style="margin-top:16px">
         <div data-ev style="--i:5"><span>${esc(T(l, '환경 구성', 'Environment setup', '環境構築'))}</span><strong>${esc(T(l, 'IT 프로비저닝 2주', '2 weeks for IT to provision', 'ITによる環境構築に2週間'))}</strong></div>
-        <div data-ev style="--i:6"><span>${esc(T(l, '제공된 환경', 'Platform provided', '提供された環境'))}</span><strong>${esc(T(l, '클라우드 LLM 서비스 · 사내 문서 포털', 'Managed cloud LLM · internal document portal', 'クラウドLLMサービス・社内文書ポータル'))}</strong></div>
+        <div data-ev style="--i:6"><span>${esc(T(l, '제공된 환경', 'Platform provided', '提供された環境'))}</span><strong>${esc(T(l, '사내 인프라 RAG 챗봇 · 지정 문서 포털 소스', 'In-house RAG chatbot · designated document-portal source', '社内基盤のRAGチャットボット・指定文書ポータルをソースに'))}</strong></div>
       </div>`, l);
   }
 
@@ -766,12 +766,15 @@
     const kv = (k, v) => `<span class="k">${k}</span>: <span class="v">${v}</span>\n`;
     const yaml =
       `<span class="c"># ${esc(T(l, '같은 규제, 대응 방법별로 나눈 두 청크', 'Same regulation, two chunks split by response method', '同一規制・対応方法別の二チャンク'))}</span>\n` +
+      `<span class="c"># ${esc(T(l, '규제 개정·사내 정책 변경 시 버전만 갱신', 'Bump the version on a rule or policy change', '規制改正・社内ポリシー変更時はバージョンのみ更新'))}</span>\n` +
+      kv('taxonomy', '["ticket_triage", "1.0.0"]') + kv('source_doc', '["cbam_declaration", "1.2.0"]') +
       kv('regulation', 'CBAM') + kv('response_type', 'declaration_request') +
       kv('jurisdiction', 'EU') + kv('product_scope', 'steel_iron') +
       kv('severity', '2') + kv('precedent', 'partial') +
       kv('customer_pressure', 'low') + kv('escalation', 'supervisor') +
       kv('owner', 'local_ops') + kv('token_budget', '380') +
       `<span class="sep">---</span>\n` +
+      kv('taxonomy', '["ticket_triage", "1.0.0"]') + kv('source_doc', '["cbam_scope_faq", "1.0.0"]') +
       kv('regulation', 'CBAM') + kv('response_type', 'scope_faq') +
       kv('jurisdiction', 'EU') + kv('product_scope', 'steel_iron') +
       kv('severity', '1') + kv('precedent', 'mapped') +
@@ -779,13 +782,18 @@
       kv('owner', 'local_ops') + kv('token_budget', '210');
 
     return `<div class="ev ev-inline">
-      ${head(T(l, '청킹 위에 얹은 메타데이터', 'Metadata layered on top of chunking', 'チャンキングに重ねたメタデータ'),
-      T(l, '추측이 아니라 티켓 로그에서 추출한 규제명을 기준으로, 대응 방법별로 청크를 분할.',
-        'Built from regulation names pulled out of ticket logs, then split into chunks by response method.',
-        '推測ではなく、チケットログから抽出した規制名を基準に、対応方法別にチャンクを分割。'))}
+      ${head(T(l, '청킹 위에 얹은 버전 관리 메타데이터', 'Versioned metadata layered on top of chunking', 'チャンキングに重ねたバージョン管理メタデータ'),
+      T(l, '추측이 아니라 티켓 로그에서 추출한 규제명을 기준으로 대응 방법별로 청크를 나누고, 분류 체계와 원문 문서를 이름·버전 쌍으로 명시.',
+        'Built from regulation names pulled out of ticket logs, split into chunks by response method, with the taxonomy and each source document pinned as explicit name–version pairs.',
+        '推測ではなく、チケットログから抽出した規制名を基準に対応方法別にチャンクを分割し、分類体系と原文書を名前・バージョンの組で明示。'))}
       <div class="ev-yaml" data-ev>
         <div class="ev-yaml-head"><i></i><i></i><i></i><em>regulation_chunks.yaml</em></div>
         <pre><code>${yaml}</code></pre>
+      </div>
+      <div class="ev-kv" style="margin-top:16px">
+        <div data-ev style="--i:1"><span>${esc(T(l, '원문 형식 (PoC)', 'Source format (PoC)', '原文形式（PoC）'))}</span><strong>${esc(T(l, '카테고리별 Word 문서 · YAML은 스키마만 차용', 'Word files by category · YAML used as schema only', 'カテゴリ別Word文書・YAMLはスキーマのみ採用'))}</strong></div>
+        <div data-ev style="--i:2"><span>${esc(T(l, '버전 관리', 'Versioning', 'バージョン管理'))}</span><strong>${esc(T(l, '규제 개정·사내 정책 변경을 버전으로 반영', 'Rule and policy changes shipped as new versions', '規制改正・社内ポリシー変更をバージョンで反映'))}</strong></div>
+        <div data-ev style="--i:3"><span>${esc(T(l, '정식화 계획', 'Next step at rollout', '本格導入時の計画'))}</span><strong>${esc(T(l, 'Markdown 전환으로 청킹 최적화', 'Move sources to Markdown to optimise chunking', 'Markdown化でチャンキングを最適化'))}</strong></div>
       </div>
     </div>`;
   }
@@ -820,6 +828,15 @@
       </table></div>
       <div class="ev-figure" data-ev style="--i:5"><strong>~60</strong><em>%</em></div>
       <span class="ev-type" data-ev style="--i:5">${esc(T(l, '1단계에서 즉시 해소된 비율', 'Share resolved instantly at Tier 1', '第1段階で即時解消された割合'))}</span>
+      <p class="ev-h" data-ev style="--i:6;margin-top:18px">${esc(T(l, '판단 결과에 남기는 거버넌스 필드', 'Governance fields logged on every routing decision', '判定結果に残すガバナンス項目'))}</p>
+      <div class="ev-yaml" data-ev style="--i:6">
+        <div class="ev-yaml-head"><i></i><i></i><i></i><em>triage_result.yaml</em></div>
+        <pre><code><span class="k">taxonomy</span>: <span class="v">["ticket_triage", "1.0.0"]</span>
+<span class="k">severity</span>: <span class="v">2</span>
+<span class="k">confidence</span>: <span class="v">0.74</span>
+<span class="k">needs_hitl</span>: <span class="v">true</span>
+<span class="k">route</span>: <span class="v">supervisor</span></code></pre>
+      </div>
       <p class="ev-h" data-ev style="--i:6;margin-top:18px">${esc(T(l, '분류 대상이 된 실제 규제 유형 (예시)', 'Regulation types this classifies (examples)', 'この分類対象となった実際の規制類型（例）'))}</p>
       <div class="ev-kv">${REGULATION_EXAMPLES(l).map((x, i) => `<div data-ev style="--i:${7 + i}"><span>0${i + 1}</span><strong>${esc(x)}</strong></div>`).join('')}</div>
     </div>`;
@@ -827,8 +844,8 @@
 
   function qualityLoopCard(l) {
     const loop = [
-      [T(l, '사용 로그 → BI', 'Usage logs → BI', '利用ログ→BI'),
-        T(l, '챗봇 문의 전체를 Power BI로 집계', 'All chatbot queries aggregated in Power BI', 'チャットボット問い合わせ全体をPower BIに集計')],
+      [T(l, '판단 로그 → BI', 'Judgement logs → BI', '判断ログ→BI'),
+        T(l, '모든 판단의 confidence · needs_HITL을 Power BI로 집계', 'confidence and needs_HITL on every judgement, aggregated in Power BI', '全判断のconfidence・needs_HITLをPower BIに集計')],
       [T(l, '답변 로그 → 티켓 태그', 'Answers → ticket tags', '回答→チケットタグ'),
         T(l, '실제 규제 답변은 분류 태그로 추출해 검토', 'Actual regulatory answers pulled by classification tag for review', '実際の規制回答は分類タグで抽出しレビュー')],
       [T(l, '현장 반응 → 원인 분석', 'Field flags → root cause', '現場フラグ→原因分析'),
@@ -859,7 +876,8 @@
       </table></div>
       <div class="ev-kv" data-ev style="--i:6;margin-top:16px">
         <div data-ev style="--i:6"><span>${esc(T(l, 'HITL 준수', 'HITL adherence', 'HITL遵守'))}</span><strong>${esc(T(l, '정해진 단계 밖 임의 답변 없음 확인', 'Checked for any answer given outside the tiered flow', '定められた段階外の任意回答がないか点検'))}</strong></div>
-        <div data-ev style="--i:7"><span>${esc(T(l, '메타데이터 보강', 'Metadata reinforcement', 'メタデータ補強'))}</span><strong>${esc(T(l, '공백 발견 즉시 반영', 'Applied as soon as a gap was found', '欠落発見次第すぐ反映'))}</strong></div>
+        <div data-ev style="--i:7"><span>${esc(T(l, 'Power BI 모니터링', 'Power BI monitoring', 'Power BIでの監視'))}</span><strong>${esc(T(l, 'needs_HITL 비율 · confidence 분포를 버전별로 추적', 'needs_HITL rate and confidence spread tracked per version', 'needs_HITL比率・confidence分布をバージョン別に追跡'))}</strong></div>
+        <div data-ev style="--i:8"><span>${esc(T(l, '메타데이터 보강', 'Metadata reinforcement', 'メタデータ補強'))}</span><strong>${esc(T(l, '공백 발견 즉시 반영', 'Applied as soon as a gap was found', '欠落発見次第すぐ反映'))}</strong></div>
       </div>
     </div>`;
   }
@@ -910,7 +928,8 @@
       <p class="gov-loop-label" style="margin-bottom:8px">${esc(T(l, '실제 청크 메타데이터', 'An actual chunk’s metadata', '実際のチャンクメタデータ'))}</p>
       <div class="ev-yaml is-compact" aria-hidden="true">
         <div class="ev-yaml-head"><i></i><i></i><i></i><em>chunk.yaml</em></div>
-        <pre><code><span class="k">regulation</span>: <span class="v">CBAM</span>
+        <pre><code><span class="k">taxonomy</span>: <span class="v">["ticket_triage", "1.0.0"]</span>
+<span class="k">regulation</span>: <span class="v">CBAM</span>
 <span class="k">response_type</span>: <span class="v">declaration_request</span>
 <span class="k">severity</span>: <span class="v">2</span>
 <span class="k">escalation</span>: <span class="v">supervisor</span></code></pre>
@@ -992,12 +1011,12 @@
     return `<div class="case-deck editorial-deck" data-deck>
       <div class="deck-tabs">${tabs.map((x, i) =>
       `<button data-card-select="${i}" aria-pressed="${i === 0}"><small>0${i + 1}</small> ${esc(x)}</button>`).join('')}</div>
-      ${rows.map((r, i) => `<article class="deck-panel" data-card-panel="${i}" ${i ? 'hidden' : ''}>
+      <div class="deck-stack">${rows.map((r, i) => `<article class="deck-panel" data-card-panel="${i}" ${i ? 'hidden' : ''}>
         <div class="action-narrative">
           <h3>${esc(r[0])}</h3><p>${esc(r[1])}</p><p>${esc(r[2])}</p>
         </div>
         <div class="action-evidence">${evidence[i]}</div>
-      </article>`).join('')}
+      </article>`).join('')}</div>
       <div class="deck-pagination">
         <button type="button" data-card-step="-1">← ${esc(T(l, '이전', 'Previous', '前へ'))}</button>
         <span data-card-count>1 / ${rows.length}</span>

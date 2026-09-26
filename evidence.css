@@ -102,7 +102,7 @@
 }
 
 .ev-sub {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
   margin: 0 0 14px;
 }
@@ -112,7 +112,7 @@
 .ev-panel {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 16px 18px;
 }
 
@@ -158,7 +158,7 @@
   right: 8px;
   top: 0;
   line-height: 16px;
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
 }
@@ -187,7 +187,7 @@
   position: absolute;
   top: -2px;
   left: 7px;
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--risk);
   white-space: nowrap;
@@ -230,7 +230,7 @@
   font-weight: 500;
   padding: 6px 10px;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 6px;
   background: var(--surface);
   color: var(--muted);
   cursor: pointer;
@@ -266,7 +266,7 @@
    rounds a collapsed table's four corners. */
 .ev-tbl-wrap {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -277,7 +277,7 @@
    so it's safe on any column count; -compact additionally narrows the row
    header, which only suits a two-column label/value table. */
 .ev-tbl-tight .ev-tbl th,
-.ev-tbl-tight .ev-tbl td { padding: 7px 11px; font-size: 12.5px; }
+.ev-tbl-tight .ev-tbl td { padding: 7px 11px; font-size: 13px; }
 .ev-tbl-compact .ev-tbl th[scope="row"] { width: 38%; }
 
 .ev-tbl th,
@@ -290,7 +290,7 @@
 
 .ev-tbl thead th {
   font-weight: 600;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
   background: var(--data-pale);
 }
@@ -355,7 +355,7 @@
 .ev-step > i {
   display: block;
   font-style: normal;
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: .04em;
   color: var(--data);
@@ -372,7 +372,7 @@
 
 .ev-step > span {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.55;
 }
@@ -383,7 +383,7 @@
 
 .ev-return {
   margin-top: 12px;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--data);
   border-top: 1px dashed var(--data-soft);
   padding-top: 9px;
@@ -441,7 +441,7 @@
   font-style: normal;
   margin-left: 7px;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 11px;
+  font-size: 12px;
   color: #838b98;
 }
 
@@ -455,15 +455,15 @@
   display: block;
   white-space: pre;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 11.5px;
+  font-size: 12px;
   line-height: 1.75;
   color: #dbdfe4;
 }
 
 .ev-yaml .k { color: #7fb3e8; }
 .ev-yaml .v { color: #e8dcae; }
-.ev-yaml .c { color: #7b8492; font-style: italic; }
-.ev-yaml .sep { color: #4a505a; }
+.ev-yaml .c { color: #9aa3ae; font-style: italic; }
+.ev-yaml .sep { color: #8d96a3; }
 
 /* Compact variant for the hero: same code-editor look, sized to sit above
    the flow diagram as the concrete artifact behind the abstract "query". */
@@ -473,9 +473,9 @@
   margin: 0 auto;
 }
 .ev-yaml.is-compact .ev-yaml-head { padding: 7px 11px; }
-.ev-yaml.is-compact .ev-yaml-head em { font-size: 10px; }
+.ev-yaml.is-compact .ev-yaml-head em { font-size: 12px; }
 .ev-yaml.is-compact pre { padding: 10px 12px; }
-.ev-yaml.is-compact code { font-size: 10.5px; line-height: 1.65; }
+.ev-yaml.is-compact code { font-size: 12px; line-height: 1.65; }
 
 /* Published-outcomes layout: one case's badge on the left, the full list
    (with the active row highlighted) on the right. The badge swaps with the
@@ -567,7 +567,7 @@
 .ev-figure { display: flex; align-items: baseline; gap: 6px; }
 .ev-figure strong { font-size: 34px; font-weight: 500; letter-spacing: -.03em; line-height: 1; }
 .ev-figure em { font-style: normal; font-size: 17px; color: var(--muted); }
-.ev-type { display: block; font-size: 12.5px; color: var(--muted); margin-top: 7px; }
+.ev-type { display: block; font-size: 13px; color: var(--muted); margin-top: 7px; }
 
 .ev svg { display: block; width: 100%; height: auto; overflow: visible; }
 .ev svg text { font-family: inherit; font-size: 12.5px; fill: var(--muted); }
@@ -579,11 +579,11 @@
 .ev-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); background: var(--surface); }
 .ev-lane { padding: 15px 16px; }
 .ev-lane + .ev-lane { border-left: 1px solid var(--line); }
-.ev-lane h4 { margin: 0 0 10px; font-size: 12.5px; font-weight: 600; color: var(--data); }
+.ev-lane h4 { margin: 0 0 10px; font-size: 13px; font-weight: 600; color: var(--data); }
 .ev-lane ol { margin: 0; padding: 0; list-style: none; counter-reset: s; }
 .ev-lane li {
   counter-increment: s;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
   padding: 7px 0 7px 22px;
   position: relative;
@@ -598,7 +598,7 @@
   height: 15px;
   border: 1px solid var(--data-soft);
   color: var(--data);
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   line-height: 14px;
 }
@@ -613,14 +613,14 @@
 
 /* three layers with the standardised middle, plus who owns it */
 .ev-stack { display: grid; gap: 8px; }
-.ev-layer { padding: 13px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.ev-layer { padding: 13px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
 /* Emphasis for the pivotal layer reads as an accent, not a selected/active
    control — no filled background or full-perimeter color, which would echo
    the site's actual pressed/selected states elsewhere. */
 .ev-layer.is-core { border-left: 2px solid var(--data); }
 .ev-layer.is-core h4 { color: var(--data); }
 .ev-layer h4 { margin: 0 0 5px; font-size: 13px; font-weight: 600; }
-.ev-layer p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+.ev-layer p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
 .ev-down { text-align: center; color: var(--data-mid); font-size: 13px; line-height: 1; }
 
 .ev-owners { margin-top: 16px; }
@@ -630,7 +630,7 @@
   gap: 12px;
   padding: 9px 0;
   border-top: 1px solid var(--line);
-  font-size: 12.5px;
+  font-size: 13px;
 }
 .ev-owners strong { font-weight: 600; color: var(--data); }
 .ev-owners span { color: var(--muted); }
@@ -643,7 +643,7 @@
   border-left: 1px solid var(--data);
   background: var(--data-pale);
   padding: 10px 12px;
-  font-size: 12.5px;
+  font-size: 13px;
 }
 .ev-gate-mark {
   writing-mode: vertical-rl;
@@ -656,14 +656,14 @@
   padding: 14px 6px;
   white-space: nowrap;
 }
-.ev-after { border: 1px solid var(--line); background: var(--ok-pale); padding: 12px 14px; font-size: 12.5px; }
+.ev-after { border: 1px solid var(--line); background: var(--ok-pale); padding: 12px 14px; font-size: 13px; }
 .ev-after strong { display: block; font-weight: 600; color: var(--ok); margin-bottom: 4px; }
 
 /* scenario controls for the schedule model */
 .ev-scenarios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .ev-scenarios button {
   font: inherit;
-  font-size: 12.5px;
+  font-size: 13px;
   padding: 8px 12px;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -676,11 +676,11 @@
 
 .ev-impact { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
 .ev-impact dl { margin: 0; display: grid; gap: 8px; }
-.ev-impact div { display: grid; grid-template-columns: minmax(92px, 30%) 1fr; gap: 12px; font-size: 12.5px; }
+.ev-impact div { display: grid; grid-template-columns: minmax(92px, 30%) 1fr; gap: 12px; font-size: 13px; }
 .ev-impact dt { color: var(--faint); }
 .ev-impact dd { margin: 0; color: var(--ink); }
 
-.ev-cadence { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 12.5px; color: var(--muted); }
+.ev-cadence { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 13px; color: var(--muted); }
 
 /* continuity line: a concept, labelled as one */
 .ev-continuity { padding: 6px 0 0; }
@@ -726,7 +726,7 @@
   .ev-steps.is-flow { grid-auto-flow: row; }
   .ev-steps.is-flow .ev-step { padding: 12px 0 0; }
   .ev-row { grid-template-columns: 1fr; gap: 4px; }
-  .ev-tbl { font-size: 12.5px; }
+  .ev-tbl { font-size: 13px; }
   .ev-tbl th, .ev-tbl td { padding: 8px 9px; }
 
   /* Shared time-axis rows: stack the label above its own full-width track
@@ -736,7 +736,7 @@
   .ev-scale > span { padding-top: 6px; }
   .ev-scale > span:first-child { padding-top: 0; }
   .ev-fixed-wrap { left: 0; right: 8px; }
-  .ev-fixed span { left: auto; right: 0; top: -18px; font-size: 10.5px; }
+  .ev-fixed span { left: auto; right: 0; top: -18px; font-size: 12px; }
 }
 
 /* the exhibits replace the legacy diagram chrome entirely */
@@ -778,7 +778,7 @@
   border-radius: 6px;
   background: var(--data-pale);
   color: var(--data);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   opacity: 0;
   animation: gov-in .5s var(--ease) forwards;
@@ -809,7 +809,7 @@
   gap: 8px;
   padding: 10px 20px;
   background: var(--data);
-  border-radius: 7px;
+  border-radius: 6px;
   color: #fff;
   font-size: 13px;
   font-weight: 600;
@@ -836,7 +836,7 @@
 }
 
 .gov-loop-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--faint);
   margin: 2px 0 12px;
   text-align: center;
@@ -853,7 +853,7 @@
 .gov-step {
   position: relative;
   border: 1px solid var(--line);
-  border-radius: 7px;
+  border-radius: 6px;
   background: var(--surface);
   padding: 10px 7px;
   text-align: center;
@@ -863,8 +863,8 @@
 .gov-step i {
   display: block;
   font-style: normal;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: .03em;
   color: var(--data);
   margin-bottom: 4px;
@@ -872,7 +872,7 @@
 
 .gov-step span {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.3;
   color: var(--muted);
 }
@@ -910,7 +910,7 @@
 .gov-route {
   flex: 1;
   border: 1px solid var(--line);
-  border-radius: 7px;
+  border-radius: 6px;
   background: var(--surface);
   padding: 11px 8px;
   text-align: center;
@@ -926,8 +926,8 @@
 .gov-route i {
   display: block;
   font-style: normal;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: .03em;
   color: var(--muted);
   margin-bottom: 4px;
@@ -1004,11 +1004,11 @@
 @media (max-width: 480px) {
   .gov-hero { padding: 26px 18px 24px; }
   .gov-loop { grid-template-columns: 1fr 1fr; gap: 7px; }
-  .gov-step span { font-size: 10.5px; }
-  .gov-figure strong { font-size: 18px; }
+  .gov-step span { font-size: 12px; }
+  .gov-figure strong { font-size: 17px; }
   .gov-routes { gap: 5px; }
   .gov-route { padding: 9px 4px; }
-  .gov-route strong { font-size: 10.5px; }
+  .gov-route strong { font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1027,3 +1027,7 @@
   .deck-stack > .deck-panel { grid-area: 1 / 1; }
   .deck-stack > .deck-panel[hidden] { display: grid; visibility: hidden; pointer-events: none; }
 }
+h3.ev-subhead { font-size: 1em; margin: 1.33em 0; }
+.ev-bar.is-ghost b { color: var(--muted); }
+.deck-pagination button { min-height: 44px; }
+.ev-yaml-head em { color: #aab2bc; }

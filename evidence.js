@@ -134,7 +134,7 @@
       ) +
       `<div class="ev-lanes">${lanes.map((lane, i) => `
         <div class="ev-lane" data-ev style="--i:${i * 2}">
-          <h4>${esc(lane.team)}</h4>
+          <h3 class="ev-subhead">${esc(lane.team)}</h3>
           <ol>${lane.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
         </div>`).join('')}</div>` +
       `<div class="ev-block">
@@ -203,7 +203,7 @@
       ) +
       `<div class="ev-stack">${layers.map((x, i) => (i ? '<div class="ev-down" data-ev style="--i:' + i + '">↓</div>' : '') +
         `<div class="ev-layer ${x.core ? 'is-core' : ''}" data-ev style="--i:${i}">
-          <h4>${esc(x.title)}</h4><p>${esc(x.body)}</p>
+          <h3 class="ev-subhead">${esc(x.title)}</h3><p>${esc(x.body)}</p>
         </div>`).join('')}</div>` +
       `<div class="ev-owners">
         <p class="ev-h" data-ev style="--i:4">${esc(T(l, '운영 책임', 'Operating ownership', '運用責任'))}</p>

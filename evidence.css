@@ -621,7 +621,7 @@
 .ev-layer.is-core h4 { color: var(--data); }
 .ev-layer h4 { margin: 0 0 5px; font-size: 13px; font-weight: 600; }
 .ev-layer p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
-.ev-down { text-align: center; color: var(--data-mid); font-size: 13px; line-height: 1; }
+.ev-down { text-align: center; color: var(--data); font-size: 13px; line-height: 1; }
 
 .ev-owners { margin-top: 16px; }
 .ev-owners > div {
@@ -755,7 +755,6 @@
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 10px;
-  box-shadow: 0 18px 50px rgba(40, 46, 51, .06);
   padding: 34px 28px 30px;
   display: flex;
   flex-direction: column;
@@ -1020,8 +1019,11 @@
 .ev-figure { margin-top: 18px; }
 .ev-tbl-tiers tbody th[scope=row] { white-space: nowrap; }
 @media (max-width: 640px) { .ev [data-exhibit="backlog"] svg text, [data-exhibit="backlog"] svg text { font-size: 21px; } }
-.ev-yaml.is-compact { max-width: 262px; }
-@media (max-width: 480px) { .ev-yaml pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
+.ev-yaml.is-compact { max-width: 300px; }
+@media (max-width: 480px) {
+  .ev-yaml code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .ev-yaml.is-compact { max-width: 100%; }
+}
 @media (min-width: 851px) {
   .deck-stack { display: grid; }
   .deck-stack > .deck-panel { grid-area: 1 / 1; }
@@ -1031,3 +1033,8 @@ h3.ev-subhead { font-size: 1em; margin: 1.33em 0; }
 .ev-bar.is-ghost b { color: var(--muted); }
 .deck-pagination button { min-height: 44px; }
 .ev-yaml-head em { color: #aab2bc; }
+
+/* One hero panel language: flat white card, 1px hairline, 10px radius, no shadow.
+   .gov-hero (cases 2-3) and the warehouse iframe card (case 1) share it. */
+.hero-model{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.hero-model iframe{display:block;border-radius:0}

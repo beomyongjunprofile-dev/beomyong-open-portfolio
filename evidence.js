@@ -35,16 +35,15 @@
   const head = (title, sub) =>
     `<p class="ev-h">${esc(title)}</p>` + (sub ? `<p class="ev-sub">${esc(sub)}</p>` : '');
 
-  /* Scale, described in words instead of a number: "hundreds of millions
-     of yen" carries the order of magnitude without publishing a range.
-     Digit count is fixed per case (language-independent); callers pass it
-     directly rather than this trying to parse translated copy. */
+  /* Scale, described qualitatively: no amount, range or order of magnitude
+     is published. The digit-count argument is kept only so callers can still
+     rank cases; it selects a broad band word, never a figure. */
   const orderOfMagnitude = (n, l) => {
     const bands = {
-      7: T(l, '수백만 엔대', 'millions of yen', '数百万円台'),
-      8: T(l, '수천만 엔대', 'tens of millions of yen', '数千万円台'),
-      9: T(l, '수억 엔대', 'hundreds of millions of yen', '数億円台'),
-      10: T(l, '수십억 엔대', 'billions of yen', '数十億円台')
+      7: T(l, '의미 있는 규모', 'Meaningful', '意味のある規模'),
+      8: T(l, '의미 있는 규모', 'Meaningful', '意味のある規模'),
+      9: T(l, '상당한 규모', 'Material', '相当な規模'),
+      10: T(l, '상당한 규모', 'Material', '相当な規模')
     };
     return bands[n] || T(l, '비공개 범위', 'an undisclosed range', '非公開の範囲');
   };
@@ -289,9 +288,9 @@
       [T(l, '계약 · 예산', 'Contract / budget', '契約・予算'), 2, 78, 'open',
         T(l, '기준 미확정 상태에서 집행 진행', 'Unresolved while spending continued', '未確定のまま支出が進行')],
       [T(l, '현장 준비', 'Site readiness', '現場準備'), 20, 80, 'open',
-        T(l, '전원 · 배선 · 환기 요건 미충족', 'Power, cabling and ventilation gaps', '電源・配線・換気が未充足')],
+        T(l, '전원 · 배선 · 시설 요건 미충족', 'Power, cabling and facility-condition gaps', '電源・配線・施設条件が未充足')],
       [T(l, '협력사 확정', 'Partners confirmed', '協力会社確定'), 40, 74, 'open',
-        T(l, '단가 · 물량 이견', 'Rate and volume disputes', '単価・物量の相違')],
+        T(l, '단가 · 물량 조건 재협의', 'Rate and volume terms under renegotiation', '単価・物量条件の再協議')],
       [T(l, '테스트 · 전환', 'Test / cutover', 'テスト・切替'), 78, 84, 'risk',
         T(l, '작업 정의 · 의존 관계 미정', 'Work and dependencies undefined', '作業定義・依存関係が未定')]
     ];
@@ -496,12 +495,12 @@
     const pts = months.map((v, i) => `${20 + i * 52},${118 - v * 0.82}`).join(' ');
 
     const volume = `<svg viewBox="0 0 620 150" role="img" aria-label="${esc(T(l,
-      '월별 물량이 계절성에 따라 변동하며 일부 달은 약정 수준을 밑도는 가상 곡선',
-      'Illustrative curve of monthly volume varying with seasonality, below the commitment level in some months',
-      '月次物量が季節性により変動し、一部の月が約定水準を下回る架空の曲線'))}">
+      '월별 물량이 계절성에 따라 변동하며 일부 달은 계획 가정 수준을 밑도는 가상 곡선',
+      'Illustrative curve of monthly volume varying with seasonality, below the planning assumption in some months',
+      '月次物量が季節性により変動し、一部の月が計画前提水準を下回る架空の曲線'))}">
       <line x1="20" y1="${118 - commit * 0.82}" x2="600" y2="${118 - commit * 0.82}"
         stroke="var(--risk)" stroke-dasharray="5 4" stroke-width="1.5"/>
-      <text x="600" y="${118 - commit * 0.82 - 7}" text-anchor="end" fill="var(--risk)">${esc(T(l, '약정 수준', 'Commitment level', '約定水準'))}</text>
+      <text x="600" y="${118 - commit * 0.82 - 7}" text-anchor="end" fill="var(--risk)">${esc(T(l, '계획 가정 수준', 'Planning assumption', '計画前提水準'))}</text>
       <polyline points="${pts}" fill="none" stroke="var(--data)" stroke-width="2.5"/>
       ${months.map((v, i) => `<circle cx="${20 + i * 52}" cy="${118 - v * 0.82}" r="3" fill="${v < commit ? 'var(--risk)' : 'var(--data)'}"/>`).join('')}
       <text x="20" y="140">01</text><text x="600" y="140" text-anchor="end">12</text>
@@ -534,7 +533,7 @@
           <tbody>
             <tr><th scope="row">${esc(T(l, '분리한 것', 'Separated', '分離した点'))}</th><td>${esc(T(l, '계절성 ↔ 연간 수요', 'Seasonality ↔ annual demand', '季節性 ↔ 年間需要'))}</td></tr>
             <tr><th scope="row">${esc(T(l, '제시한 것', 'Presented', '提示した点'))}</th><td>${esc(T(l, '향후 업무별 규모 · 시기 · 가치', 'Future work by volume, timing and value', '今後の業務別の規模・時期・価値'))}</td></tr>
-            <tr><th scope="row">${esc(T(l, '연결한 결정', 'Decision reached', '接続した決定'))}</th><td>${esc(T(l, 'CFO 협의 · 협력 지속', 'CFO alignment · support continued', 'CFO協議・協力継続'))}</td></tr>
+            <tr><th scope="row">${esc(T(l, '연결한 결정', 'Decision reached', '接続した決定'))}</th><td>${esc(T(l, '경영진 협의 · 협력 지속', 'Leadership alignment · support continued', '経営層との協議・協力継続'))}</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -556,7 +555,7 @@
           'Not replaced for being old — the available capacity did not meet the operating requirement.',
           '旧型だからではなく、可用容量が運用要件を満たさないための交換。'),
         T(l, '가용 용량 대비 요구', 'Capacity vs requirement', '容量と要件'), 100, 58],
-      [T(l, '환기', 'Ventilation', '換気'),
+      [T(l, '시설 조건', 'Facility conditions', '施設条件'),
         T(l, '점검 지적사항과 실측 결과를 연결해 대응 필요성을 입증.',
           'Inspection findings connected to measured performance to substantiate the remedy.',
           '点検指摘と実測を結び、対応の必要性を立証。'),
@@ -609,9 +608,9 @@
           'Local advice, comparable cases and multiple expert opinions turned it into concrete conditions.',
           '現地助言・類似事例・複数の専門家意見で実行要件を具体化。')],
       [T(l, '변경한 운영', 'What changed', '変更した運用'), g[4] + ' · ' + g[5],
-        T(l, '주 단위 신청과 ERP 기록 보존을 프로세스로 고정.',
-          'Weekly filing and ERP record retention were fixed into the process.',
-          '週次申請とERP記録保持をプロセスとして固定。')]
+        T(l, '정기 신청 주기와 ERP 기록 보존을 프로세스로 고정.',
+          'A recurring filing cadence and ERP record retention were fixed into the process.',
+          '定期的な申請サイクルとERP記録保持をプロセスとして固定。')]
     ];
     return `<div class="ev ev-inline">
       ${head(T(l, '멈춘 이유를 조건으로 바꾸기', 'Turning the reason it stopped into conditions', '止まった理由を条件に変える'),
@@ -626,7 +625,7 @@
         </div>`).join('')}</div>
       <div class="ev-block">
         <div class="ev-steps is-flow">${[
-        T(l, '주 단위 신청', 'Weekly filing', '週次申請'),
+        T(l, '정기 신청', 'Recurring filing cadence', '定期的な申請'),
         T(l, 'ERP 기록 보존', 'ERP record retention', 'ERP記録保持'),
         T(l, '반복 환급', 'Recurring recovery', '継続的な還付')
       ].map((s, i) => `<div class="ev-step ${i === 2 ? 'is-last' : ''}" data-ev style="--i:${3 + i}">
@@ -686,68 +685,68 @@
     const hires = [3, 7];
     const cap = 45;
     const pts = periods.map((v, i) => `${20 + i * 52},${118 - v * 0.9}`).join(' ');
-    const hireLabel = T(l, '인원 충원', 'Headcount added', '増員');
+    const hireLabel = T(l, '처리 여력 보강', 'Capacity added', '処理余力の補強');
     const markers = hires.map(i => {
       const x = 20 + i * 52, y = 118 - periods[i] * 0.9;
       return `<line x1="${x}" y1="24" x2="${x}" y2="${y - 6}" stroke="var(--data-soft)" stroke-dasharray="2 3"/>
         <text x="${x}" y="18" text-anchor="middle" fill="var(--data)" font-size="10">${esc(hireLabel)}</text>`;
     }).join('');
     const chart = `<svg viewBox="0 0 620 150" role="img" aria-label="${esc(T(l,
-      '분기별 확인 대기 건수가 지난 3년간 인원 충원에도 처리 가능한 수준을 반복해서 넘어서며 계속 늘어난 가상 곡선',
-      'Illustrative curve of the quarterly confirmation backlog repeatedly breaking past a sustainable level over 3 years, despite added headcount',
-      '四半期ごとの確認待ち件数が、過去3年間の増員にもかかわらず処理可能な水準を繰り返し超えて増え続けた架空の曲線'))}">
+      '분기별 확인 대기 건수가 처리 여력 보강에도 처리 가능한 수준을 반복해서 넘어서며 계속 늘어난 가상 곡선',
+      'Illustrative curve of the quarterly confirmation backlog repeatedly breaking past a sustainable level over time, despite added capacity',
+      '四半期ごとの確認待ち件数が、処理余力の補強にもかかわらず処理可能な水準を繰り返し超えて増え続けた架空の曲線'))}">
       <line x1="20" y1="${118 - cap * 0.9}" x2="600" y2="${118 - cap * 0.9}"
         stroke="var(--risk)" stroke-dasharray="5 4" stroke-width="1.5"/>
       <text x="600" y="${118 - cap * 0.9 + 19}" text-anchor="end" fill="var(--risk)">${esc(T(l, '처리 가능 수준', 'Sustainable level', '処理可能な水準'))}</text>
       <polyline points="${pts}" fill="none" stroke="var(--data)" stroke-width="2.5"/>
       ${periods.map((v, i) => `<circle cx="${20 + i * 52}" cy="${118 - v * 0.9}" r="3" fill="${v > cap ? 'var(--risk)' : 'var(--data)'}"/>`).join('')}
       ${markers}
-      <text x="20" y="140">${esc(T(l, '약 3년 전', '~3 years ago', '約3年前'))}</text><text x="600" y="140" text-anchor="end">${esc(T(l, '현재', 'Now', '現在'))}</text>
+      <text x="20" y="140">${esc(T(l, '이전', 'Earlier', '以前'))}</text><text x="600" y="140" text-anchor="end">${esc(T(l, '현재', 'Now', '現在'))}</text>
     </svg>`;
 
     return fig('backlog',
       head(
         T(l, '두 갈래로 쌓이는 확인 대기열', 'A backlog stacking up on two fronts', '二方向に積み上がる確認待ちキュー'),
-        T(l, '수년간 인력을 여러 차례 보강했지만 본사 회신 대기 큐와 고객 응대 큐가 함께 늘어나, 처리보다 관리 자체가 더 큰 부담으로 작용.',
-          'Reinforced with more headcount several times over the years, but the HQ follow-up queue and the customer queue kept growing together, until managing them became the real burden.',
-          '数年にわたり人員を何度も補強しても、本社回答待ちキューと顧客対応キューが共に膨らみ、処理より管理そのものが重荷に。')
+        T(l, '처리 여력을 보강했지만 중앙 팀 회신 대기 큐와 고객 응대 큐가 함께 늘어나, 처리보다 관리 자체가 더 큰 부담으로 작용.',
+          'Capacity was added, but the central follow-up queue and the customer queue kept growing together, until managing them became the real burden.',
+          '処理余力を補強しても、中央部門の回答待ちキューと顧客対応キューが共に膨らみ、処理より管理そのものが重荷に。')
       ) +
       `<div data-ev>${chart}</div>` +
       `<div class="ev-kv" style="margin-top:16px">
-        <div data-ev style="--i:1"><span>${esc(T(l, '인력 보강', 'Headcount reinforcement', '人員補強'))}</span><strong>${esc(T(l, '3년간 2회', 'Twice in 3 years', '3年間で2回'))}</strong></div>
-        <div data-ev style="--i:2"><span>${esc(T(l, '월간 관리 부담', 'Monthly management load', '月間の管理負荷'))}</span><strong>${esc(T(l, '약 100시간', '~100 hours', '約100時間'))}</strong></div>
-        <div data-ev style="--i:3"><span>${esc(T(l, '고객 영향', 'Customer impact', '顧客への影響'))}</span><strong>${esc(T(l, '계약 갱신 시 요청', 'Raised in contract renewals', '契約更新時に要請'))}</strong></div>
+        <div data-ev style="--i:1"><span>${esc(T(l, '대기열 추이', 'Queue trend', '待ちキューの推移'))}</span><strong>${esc(T(l, '증가 지속', 'Kept growing', '増加が継続'))}</strong></div>
+        <div data-ev style="--i:2"><span>${esc(T(l, '수작업 관리 부담', 'Manual management effort', '手作業の管理負荷'))}</span><strong>${esc(T(l, '상당한 수준', 'Significant', '相当な水準'))}</strong></div>
+        <div data-ev style="--i:3"><span>${esc(T(l, '고객 영향', 'Customer impact', '顧客への影響'))}</span><strong>${esc(T(l, '시급한 요청 발생', 'Time-sensitive requests', '緊急性の高い要請が発生'))}</strong></div>
       </div>`, l);
   }
 
   /* ------------------------------------------------------------------ *
-   * Compliance · Task — a four-person pilot that moved without approval
+   * Compliance · Task — a small cross-functional pilot
    * ------------------------------------------------------------------ */
   function pocScope(l) {
     const team = [
       [T(l, '오퍼레이션 매니저 · 기초 설계', 'Ops manager · base design', 'オペレーションマネージャー・基本設計'),
         T(l, '분류 체계 · 심각도 · 전체 구조', 'Taxonomy, severity and overall structure', '分類体系・重大度・全体構造')],
-      [T(l, '본사 IT 1명', 'HQ IT (1)', '本社IT 1名'),
+      [T(l, 'IT 담당', 'IT', 'IT担当'),
         T(l, '환경 프로비저닝 · 권한', 'Environment provisioning and access', '環境プロビジョニング・権限付与')],
-      [T(l, '현지 운영 담당자 1명', 'Local operations lead (1)', '現地オペレーション担当 1名'),
-        T(l, '실제 문의 유형 조사', 'Survey of actual query types', '実際の照会類型の調査')],
-      [T(l, '현지 규제 담당 1명', 'Local regulatory reviewer (1)', '現地規制担当 1名'),
+      [T(l, '운영 담당', 'Operations lead', 'オペレーション担当'),
+        T(l, '대표 문의 유형 조사', 'Survey of representative query types', '代表的な照会類型の調査')],
+      [T(l, '규제 담당', 'Regulatory reviewer', '規制担当'),
         T(l, '심각도 기준 감수', 'Review of severity criteria', '重大度基準のレビュー')]
     ];
     return fig('poc-scope',
       head(
-        T(l, '본사 승인 없이 움직인 4인 파일럿', 'A four-person pilot that moved without HQ approval', '本社承認なしで動いた4名パイロット'),
-        T(l, '결재 라인을 늘리는 대신, 작게 시작해 실체부터 확인하는 방식.',
-          'Rather than lengthening the approval chain, the approach was to start small and verify the real shape of the problem first.',
-          '決裁ラインを増やす代わりに、小さく始めて実態から確認する方式。')
+        T(l, '범위를 한정해 빠르게 검증한 소규모 파일럿', 'A small, contained pilot to validate feasibility quickly', '範囲を限定して迅速に検証した小規模パイロット'),
+        T(l, '처음부터 전부 설계하는 대신, 작게 시작해 문제의 실체부터 확인하는 방식.',
+          'Rather than designing everything up front, the approach was to start small and verify the real shape of the problem first.',
+          '最初から作り込む代わりに、小さく始めて実態から確認する方式。')
       ) +
       `<div class="ev-owners">
-        <p class="ev-h" data-ev>${esc(T(l, '4인 구성', 'Team of four', '4名体制'))}</p>
+        <p class="ev-h" data-ev>${esc(T(l, '소규모 구성', 'A small team', '少人数の体制'))}</p>
         ${team.map((o, i) => `<div data-ev style="--i:${1 + i}">
           <strong>${esc(o[0])}</strong><span>${esc(o[1])}</span></div>`).join('')}
       </div>` +
       `<div class="ev-kv" style="margin-top:16px">
-        <div data-ev style="--i:5"><span>${esc(T(l, '환경 구성', 'Environment setup', '環境構築'))}</span><strong>${esc(T(l, 'IT 프로비저닝 2주', '2 weeks for IT to provision', 'ITによる環境構築に2週間'))}</strong></div>
+        <div data-ev style="--i:5"><span>${esc(T(l, '환경 구성', 'Environment setup', '環境構築'))}</span><strong>${esc(T(l, 'IT 프로비저닝 · 짧은 셋업 기간', 'IT provisioning · short setup cycle', 'IT環境構築・短い準備期間'))}</strong></div>
         <div data-ev style="--i:6"><span>${esc(T(l, '제공된 환경', 'Platform provided', '提供された環境'))}</span><strong>${esc(T(l, '사내 인프라 RAG 챗봇 · 지정 문서 포털 소스', 'In-house RAG chatbot · designated document-portal source', '社内基盤のRAGチャットボット・指定文書ポータルをソースに'))}</strong></div>
       </div>`, l);
   }
@@ -756,10 +755,10 @@
    * Compliance · Action cards
    * ------------------------------------------------------------------ */
   const REGULATION_EXAMPLES = l => [
-    T(l, '탄소국경조정(CBAM)', 'Carbon border adjustment (CBAM)', '炭素国境調整(CBAM)'),
-    T(l, '삼림파괴 관련 규제(EUDR)', 'Deforestation regulation (EUDR)', '森林破壊関連規制(EUDR)'),
-    T(l, '특정 화학물질 포함 여부', 'Restricted-substance content', '特定化学物質の含有有無'),
-    T(l, '부품 원산지 확인서', 'Component country-of-origin', '部品原産地確認書')
+    T(l, 'EU 무역 관련 규제', 'EU trade regulations', 'EUの貿易関連規制'),
+    T(l, '지속가능성 관련 규제', 'Sustainability-related regulations', 'サステナビリティ関連規制'),
+    T(l, '제품 구성·성분 관련 요건', 'Product-composition requirements', '製品の構成・成分に関する要件'),
+    T(l, '공급망 증빙 요건', 'Supply-chain documentation requirements', 'サプライチェーン関連の証憑要件')
   ];
 
   function taxonomyCard(l) {
@@ -767,25 +766,25 @@
     const yaml =
       `<span class="c"># ${esc(T(l, '같은 규제, 대응 방법별로 나눈 두 청크', 'Same regulation, two chunks split by response method', '同一規制・対応方法別の二チャンク'))}</span>\n` +
       `<span class="c"># ${esc(T(l, '규제 개정·사내 정책 변경 시 버전만 갱신', 'Bump the version on a rule or policy change', '規制改正・社内ポリシー変更時はバージョンのみ更新'))}</span>\n` +
-      kv('taxonomy', '["ticket_triage", "1.0.0"]') + kv('source_doc', '["cbam_declaration", "1.2.0"]') +
-      kv('regulation', 'CBAM') + kv('response_type', 'declaration_request') +
-      kv('jurisdiction', 'EU') + kv('product_scope', 'steel_iron') +
+      kv('taxonomy', '["inquiry_triage", "1.0.0"]') + kv('source_doc', '["regulation_a_declaration", "1.2.0"]') +
+      kv('regulation', 'regulation_A') + kv('response_type', 'declaration_request') +
+      kv('jurisdiction', 'region_X') + kv('product_scope', 'product_group_1') +
       kv('severity', '2') + kv('precedent', 'partial') +
       kv('customer_pressure', 'low') + kv('escalation', 'supervisor') +
-      kv('owner', 'local_ops') + kv('token_budget', '380') +
+      kv('owner', 'operations') + kv('token_budget', '380') +
       `<span class="sep">---</span>\n` +
-      kv('taxonomy', '["ticket_triage", "1.0.0"]') + kv('source_doc', '["cbam_scope_faq", "1.0.0"]') +
-      kv('regulation', 'CBAM') + kv('response_type', 'scope_faq') +
-      kv('jurisdiction', 'EU') + kv('product_scope', 'steel_iron') +
+      kv('taxonomy', '["inquiry_triage", "1.0.0"]') + kv('source_doc', '["regulation_a_scope_faq", "1.0.0"]') +
+      kv('regulation', 'regulation_A') + kv('response_type', 'scope_faq') +
+      kv('jurisdiction', 'region_X') + kv('product_scope', 'product_group_1') +
       kv('severity', '1') + kv('precedent', 'mapped') +
       kv('customer_pressure', 'low') + kv('escalation', 'none') +
-      kv('owner', 'local_ops') + kv('token_budget', '210');
+      kv('owner', 'operations') + kv('token_budget', '210');
 
     return `<div class="ev ev-inline">
       ${head(T(l, '청킹 위에 얹은 버전 관리 메타데이터', 'Versioned metadata layered on top of chunking', 'チャンキングに重ねたバージョン管理メタデータ'),
-      T(l, '추측이 아니라 티켓 로그에서 추출한 규제명을 기준으로 대응 방법별로 청크를 나누고, 분류 체계와 원문 문서를 이름·버전 쌍으로 명시.',
-        'Built from regulation names pulled out of ticket logs, split into chunks by response method, with the taxonomy and each source document pinned as explicit name–version pairs.',
-        '推測ではなく、チケットログから抽出した規制名を基準に対応方法別にチャンクを分割し、分類体系と原文書を名前・バージョンの組で明示。'))}
+      T(l, '추측이 아니라 과거 문의 데이터에서 추린 대표 규제 유형을 기준으로 대응 방법별로 청크를 나누고, 분류 체계와 원문 문서를 이름·버전 쌍으로 명시.',
+        'Built from representative regulatory categories drawn from historical inquiry data, split into chunks by response method, with the taxonomy and each source document pinned as explicit name–version pairs.',
+        '推測ではなく、過去の問い合わせデータから抽出した代表的な規制類型を基準に対応方法別にチャンクを分割し、分類体系と原文書を名前・バージョンの組で明示。'))}
       <div class="ev-yaml" data-ev>
         <div class="ev-yaml-head"><i></i><i></i><i></i><em>regulation_chunks.yaml</em></div>
         <pre><code>${yaml}</code></pre>
@@ -805,9 +804,9 @@
       [T(l, '2단계', 'Tier 2', '第2段階'), T(l, '매핑 없음 · 선례로 조합 · 요구 강도 낮음', 'No mapping · composed from precedent · low pressure', 'マッピングなし・前例で構成・圧力低'),
         T(l, '담당자 에스컬레이션', 'Supervisor escalation', '担当者へエスカレーション'), false],
       [T(l, '3단계', 'Tier 3', '第3段階'), T(l, '고객 요구 강도 높음', 'High customer pressure', '顧客からの圧力大'),
-        T(l, '법무팀 에스컬레이션', 'Legal / HQ escalation', '法務・本社へエスカレーション'), false],
+        T(l, '법무팀 에스컬레이션', 'Legal escalation', '法務へエスカレーション'), false],
       [T(l, '4단계', 'Tier 4', '第4段階'), T(l, '처음 보는 사례', 'Never seen before', '前例のない事案'),
-        T(l, '법무팀 에스컬레이션', 'Legal / HQ escalation', '法務・本社へエスカレーション'), false]
+        T(l, '법무팀 에스컬레이션', 'Legal escalation', '法務へエスカレーション'), false]
     ];
     return `<div class="ev ev-inline">
       ${head(T(l, '선례와 요구 강도, 두 축으로 나눈 4단계', 'Four tiers on two axes: precedent and pressure', '前例と圧力、二軸で分けた4段階'),
@@ -831,13 +830,13 @@
       <p class="ev-h" data-ev style="--i:6;margin-top:18px">${esc(T(l, '판단 결과에 남기는 거버넌스 필드', 'Governance fields logged on every routing decision', '判定結果に残すガバナンス項目'))}</p>
       <div class="ev-yaml" data-ev style="--i:6">
         <div class="ev-yaml-head"><i></i><i></i><i></i><em>triage_result.yaml</em></div>
-        <pre><code><span class="k">taxonomy</span>: <span class="v">["ticket_triage", "1.0.0"]</span>
+        <pre><code><span class="k">taxonomy</span>: <span class="v">["inquiry_triage", "1.0.0"]</span>
 <span class="k">severity</span>: <span class="v">2</span>
 <span class="k">confidence</span>: <span class="v">0.74</span>
 <span class="k">needs_hitl</span>: <span class="v">true</span>
 <span class="k">route</span>: <span class="v">supervisor</span></code></pre>
       </div>
-      <p class="ev-h" data-ev style="--i:6;margin-top:18px">${esc(T(l, '분류 대상이 된 실제 규제 유형 (예시)', 'Regulation types this classifies (examples)', 'この分類対象となった実際の規制類型（例）'))}</p>
+      <p class="ev-h" data-ev style="--i:6;margin-top:18px">${esc(T(l, '분류 대상 규제 유형 (예시)', 'Regulation types this classifies (illustrative)', 'この分類の対象となる規制類型（例示）'))}</p>
       <div class="ev-kv">${REGULATION_EXAMPLES(l).map((x, i) => `<div data-ev style="--i:${7 + i}"><span>0${i + 1}</span><strong>${esc(x)}</strong></div>`).join('')}</div>
     </div>`;
   }
@@ -846,7 +845,7 @@
     const loop = [
       [T(l, '판단 로그 → BI', 'Judgement logs → BI', '判断ログ→BI'),
         T(l, '모든 판단의 confidence · needs_HITL을 Power BI로 집계', 'confidence and needs_HITL on every judgement, aggregated in Power BI', '全判断のconfidence・needs_HITLをPower BIに集計')],
-      [T(l, '답변 로그 → 티켓 태그', 'Answers → ticket tags', '回答→チケットタグ'),
+      [T(l, '답변 로그 → 문의 태그', 'Answers → inquiry tags', '回答→問い合わせタグ'),
         T(l, '실제 규제 답변은 분류 태그로 추출해 검토', 'Actual regulatory answers pulled by classification tag for review', '実際の規制回答は分類タグで抽出しレビュー')],
       [T(l, '현장 반응 → 원인 분석', 'Field flags → root cause', '現場フラグ→原因分析'),
         T(l, '숙련 담당자의 이상 답변 반응을 분석해 공백 확인', "Experienced staff's flags on off answers were root-caused", '経験者による違和感フラグを分析し欠落を確認')],
@@ -905,8 +904,8 @@
       `<div class="ev-block">
         <p class="ev-h" data-ev style="--i:3">${esc(T(l, '관리 부담의 변화', 'Change in management load', '管理負荷の変化'))}</p>
         <div class="ev-kv">
-          <div data-ev style="--i:4"><span>${esc(T(l, '파일럿 이전', 'Before the pilot', 'パイロット以前'))}</span><strong>${esc(T(l, '월 약 100시간', '~100 hours / month', '月間約100時間'))}</strong></div>
-          <div data-ev style="--i:5"><span>${esc(T(l, '확대 적용 시 전망', 'Projected at full scale', '本格展開時の見込み'))}</span><strong>${esc(T(l, '연간 수백 시간 절감', 'Hundreds of hours saved annually', '年間数百時間の削減'))}</strong></div>
+          <div data-ev style="--i:4"><span>${esc(T(l, '파일럿 이전', 'Before the pilot', 'パイロット以前'))}</span><strong>${esc(T(l, '상당한 수작업', 'Significant manual effort', '相当な手作業'))}</strong></div>
+          <div data-ev style="--i:5"><span>${esc(T(l, '확대 적용 시 전망', 'Projected at full scale', '本格展開時の見込み'))}</span><strong>${esc(T(l, '연간 상당한 시간 절감 가능성', 'Material annual time-saving potential', '年間で相当な時間削減の見込み'))}</strong></div>
         </div>
       </div>`, l);
   }
@@ -925,11 +924,11 @@
         'EU 규제 문의가 4단계 심각도로 분류되어 즉시 답변 · 담당자 에스컬레이션 · 법무팀 에스컬레이션 중 하나로 갈라지는 애니메이션 다이어그램',
         'Animated diagram of an EU regulatory query classified into four severity tiers and routed to an instant answer, a supervisor escalation or a legal escalation',
         'EU規制の問い合わせが4段階の重大度に分類され、即時回答・担当者エスカレーション・法務エスカレーションのいずれかに分岐するアニメーション図'))}">
-      <p class="gov-loop-label" style="margin-bottom:8px">${esc(T(l, '실제 청크 메타데이터', 'An actual chunk’s metadata', '実際のチャンクメタデータ'))}</p>
+      <p class="gov-loop-label" style="margin-bottom:8px">${esc(T(l, '메타데이터 예시', 'Illustrative metadata example', 'メタデータの例（例示）'))}</p>
       <div class="ev-yaml is-compact" aria-hidden="true">
         <div class="ev-yaml-head"><i></i><i></i><i></i><em>chunk.yaml</em></div>
-        <pre><code><span class="k">taxonomy</span>: <span class="v">["ticket_triage", "1.0.0"]</span>
-<span class="k">regulation</span>: <span class="v">CBAM</span>
+        <pre><code><span class="k">taxonomy</span>: <span class="v">["inquiry_triage", "1.0.0"]</span>
+<span class="k">regulation</span>: <span class="v">regulation_A</span>
 <span class="k">response_type</span>: <span class="v">declaration_request</span>
 <span class="k">severity</span>: <span class="v">2</span>
 <span class="k">escalation</span>: <span class="v">supervisor</span></code></pre>
@@ -949,7 +948,7 @@
       <div class="gov-routes">
         <div class="gov-route is-primary">${answerIcon}<i>${esc(T(l, '1단계', 'Tier 1', '第1段階'))}</i><strong>${esc(T(l, '즉시 답변', 'Instant answer', '即時回答'))}</strong></div>
         <div class="gov-route">${supervisorIcon}<i>${esc(T(l, '2단계', 'Tier 2', '第2段階'))}</i><strong>${esc(T(l, '담당자 에스컬레이션', 'Supervisor', '担当者へ'))}</strong></div>
-        <div class="gov-route">${legalIcon}<i>${esc(T(l, '고강도 요구·신규 사례', 'High pressure / novel', '高圧力・新規事案'))}</i><strong>${esc(T(l, '법무팀 에스컬레이션', 'Legal / HQ', '法務へ'))}</strong></div>
+        <div class="gov-route">${legalIcon}<i>${esc(T(l, '고강도 요구·신규 사례', 'High pressure / novel', '高圧力・新規事案'))}</i><strong>${esc(T(l, '법무팀 에스컬레이션', 'Legal', '法務へ'))}</strong></div>
       </div>
       <div class="gov-figure">
         <strong>~60%</strong>

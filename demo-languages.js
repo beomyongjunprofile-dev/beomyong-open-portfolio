@@ -1,4 +1,4 @@
-(()=>{const lang=new URLSearchParams(location.search).get('lang')||'en';document.documentElement.lang=lang;const back=document.getElementById('case-return');if(back)back.href='./cost.html?lang='+encodeURIComponent(lang)+'#demo';const dict={
+(()=>{const lang=new URLSearchParams(location.search).get('lang')||'en';document.documentElement.lang=lang;const back=document.getElementById('case-return');if(back)back.href='./cost-intelligence.html?lang='+encodeURIComponent(lang)+'#demo';const dict={
 'Request → coordinates':['요청 → 좌표 매핑','要求 → 座標変換'],
 'Minimum absolute difference':['최소 금액 차이','差額の下限'],'All differences':['모든 차이','全ての差異'],'ERP duty JPY':['ERP 관세 JPY','ERP関税 JPY'],'Simulated duty JPY':['시뮬레이션 관세 JPY','試算関税 JPY'],'Absolute difference JPY':['절대 금액 차이 JPY','絶対差額 JPY'],
 'IMPORT COST':['수입비용','輸入諸掛'],'& TAX ANALYTICS':['· 세무 분석','・税務分析'],'Back to case study':['사례 본문으로','事例に戻る'],'Power BI project · Reconstructed web demo':['Power BI 구현 사례 · 웹 재구성 데모','Power BI実装事例 · Web再構成デモ'],'Freight · Handling · Duty · VAT':['운임 · 취급수수료 · 관세 · VAT','運賃 · 取扱手数料 · 関税 · VAT'],

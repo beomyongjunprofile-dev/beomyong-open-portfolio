@@ -19,9 +19,9 @@ public = root / '_site'
 if public.exists():
     shutil.rmtree(public)
 public.mkdir()
-PAGES = ('logistics.html', 'cost.html', 'triage.html')
+PAGES = ('ops-cutover.html', 'cost-intelligence.html', 'ai-triage.html')
 # Old addresses stay alive as redirect stubs that carry the same link preview.
-REDIRECTS = {'index.html': 'logistics.html', 'trade.html': 'cost.html', 'compliance.html': 'triage.html'}
+REDIRECTS = {'index.html': 'ops-cutover.html', 'trade.html': 'cost-intelligence.html', 'compliance.html': 'ai-triage.html'}
 image = escape(site_url + 'social-preview.png', quote=True)
 for name, target in [(n, n) for n in PAGES] + list(REDIRECTS.items()):
     source = (root / name).read_text()

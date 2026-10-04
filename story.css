@@ -50,9 +50,9 @@ html[lang=ja] h1,html[lang=ja] h2,html[lang=ja] .deck-panel h3{word-break:normal
 html[lang=ko] .hero .lede,html[lang=ko] .scene p.lead,html[lang=ko] .scene p.context-body,html[lang=ja] .hero .lede,html[lang=ja] .scene p.lead,html[lang=ja] .scene p.context-body{max-width:42em}
 b,strong{font-weight:600}
 
-/* Key-results band (under the hero) and case closing cards. Same container
+/* Key-results band (under the hero). Same container
    width and gutters as .at-a-glance so the page keeps one column edge. */
-.kpi-band,.closing{max-width:1240px;margin:0 auto}
+.kpi-band{max-width:1240px;margin:0 auto}
 .kpi-band{margin-bottom:56px}
 .kpi-inner{display:flex;flex-wrap:wrap;align-items:center;gap:18px 32px;background:var(--data-pale);border-radius:10px;padding:28px 36px}
 .kpi-list{display:flex;flex:1 1 auto;margin:0;padding:0;list-style:none}
@@ -70,26 +70,6 @@ b,strong{font-weight:600}
 html[lang=ko] .kpi-cap,html[lang=ja] .kpi-cap{max-width:12em;overflow-wrap:break-word}html[lang=ko] .kpi-cap{word-break:keep-all}
 @media(max-width:1100px){.kpi-note{flex-basis:100%;margin:0;text-align:left}}
 @media(max-width:850px){.kpi-list{flex-direction:column;width:100%}.kpi-item,.kpi-item:first-child{padding:16px 0}.kpi-item:first-child{padding-top:0}.kpi-item+.kpi-item::before{left:0;right:0;top:0;bottom:auto;width:auto;height:1px}.kpi-cap,html[lang=ko] .kpi-cap,html[lang=ja] .kpi-cap{max-width:none}}
-@media(max-width:1350px){.kpi-band,.closing{margin-inline:40px}}
-@media(max-width:850px){.kpi-band,.closing{margin-inline:25px}}
-@media(max-width:480px){.kpi-band,.closing{margin-inline:22px}.kpi-inner{padding:22px 20px}.kpi-num{font-size:40px}.kpi-item.is-text .kpi-num{font-size:20px}}
-
-.closing{padding:24px 0 84px}
-.closing-label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.closing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.closing-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px}
-.closing-label{color:var(--muted);margin-bottom:12px}
-.closing-card h3{font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-.01em;margin:0 0 10px}
-.closing-card p{font-size:15px;line-height:1.7;color:var(--muted);margin:0 0 24px;max-width:34em;text-wrap:pretty}
-.closing-link{display:flex;align-items:center;min-height:52px;margin-top:auto;border-top:1px solid var(--line);color:var(--data);font-size:15px;font-weight:500}
-.closing-rows{list-style:none;margin:6px 0 24px;padding:0;border-top:1px solid var(--line)}
-.closing-rows a{display:flex;align-items:center;gap:16px;min-height:52px;border-bottom:1px solid var(--line);font-size:15px}
-.closing-rows .k{flex:0 0 5.5em;font-weight:500}
-.closing-rows .v{flex:1;min-width:0;color:var(--muted);text-align:right;overflow-wrap:anywhere}
-.closing-rows .ar{color:var(--data)}
-.closing-rows a:hover .v{color:var(--ink)}
-.closing-btn{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:auto;border-radius:6px;background:var(--data);color:#fff;font-size:15px;font-weight:500}
-.closing-btn:hover{filter:brightness(.92)}
-.closing .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media(max-width:850px){.closing-grid{grid-template-columns:minmax(0,1fr)}.closing{padding-bottom:64px}}
-@media(max-width:480px){.closing-card{padding:22px}.closing-rows a{flex-wrap:wrap;gap:0 12px;padding:10px 0;min-height:56px}.closing-rows .k{flex:0 0 100%;font-size:12px;font-weight:600;color:var(--muted)}.closing-rows .v{flex:1 1 0;font-size:14px;text-align:left}}
+@media(max-width:1350px){.kpi-band{margin-inline:40px}}
+@media(max-width:850px){.kpi-band{margin-inline:25px}}
+@media(max-width:480px){.kpi-band{margin-inline:22px}.kpi-inner{padding:22px 20px}.kpi-num{font-size:40px}.kpi-item.is-text .kpi-num{font-size:20px}}

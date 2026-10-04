@@ -1038,3 +1038,72 @@ h3.ev-subhead { font-size: 1em; margin: 1.33em 0; }
    .gov-hero (cases 2-3) and the warehouse iframe card (case 1) share it. */
 .hero-model{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .hero-model iframe{display:block;border-radius:0}
+
+/* ==========================================================================
+   Scene rhythm (B1): chapter marker, sticky chapter rail, mirrored Task scene,
+   full-bleed Result band, staggered reveal. Loaded last so it wins the cascade.
+   ========================================================================== */
+.scene { border-top: 0; align-content: center; row-gap: 28px; }
+.scene > .scene-visual { margin-top: 0; }
+.scene:has([data-exhibit$="-cards"]) .chapter { margin-bottom: 40px; }
+
+.chapter {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 14px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  opacity: var(--scene-opacity, 1);
+  transform: translateY(calc(var(--lift, 0px) * .3));
+}
+.chapter::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.chapter-no { color: var(--data); font-weight: 600; }
+.chapter-name { font-weight: 500; }
+.scene[data-star="R"] .chapter { justify-content: center; }
+.scene[data-star="R"] .chapter::before { content: ""; flex: 1; height: 1px; background: var(--data-mid); opacity: .5; }
+.scene[data-star="R"] .chapter::after { background: var(--data-mid); opacity: .5; }
+
+/* Staggered reveal: later blocks travel further, so they settle after the headline. */
+.scene-copy > :nth-child(n+2) { transform: translateY(calc(var(--lift, 0px) * .35)); }
+.scene-copy > :nth-child(n+3) { transform: translateY(calc(var(--lift, 0px) * .7)); }
+
+/* Result scene: the climax sits on a full-bleed pale band. */
+.scene[data-star="R"] {
+  background: var(--data-pale);
+  box-shadow: 0 0 0 100vmax var(--data-pale);
+  clip-path: inset(0 -100vmax);
+  padding-block: 110px;
+}
+.closing { padding-top: 96px; }
+
+@media (min-width: 851px) {
+  /* Task scene mirrors the Situation scene: exhibit left, copy right. */
+  .scene[data-star="T"] { grid-template-columns: minmax(0, 1.1fr) minmax(0, .95fr); }
+  .scene[data-star="T"] .chapter { order: -2; }
+  .scene[data-star="T"] .scene-visual { order: -1; }
+  html { scroll-padding-top: 150px; }
+
+  .story-body { position: relative; }
+  .chapter-rail {
+    position: sticky; top: var(--hdr-h, 84px); z-index: 19;
+    max-width: 1240px; margin: 0 auto;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .chapter-rail ol { display: flex; gap: 28px; margin: 0; padding: 0; list-style: none; }
+  .chapter-rail a {
+    display: flex; align-items: center; gap: 8px; min-height: 40px;
+    font-size: 13px; color: var(--muted);
+    box-shadow: inset 0 -2px 0 transparent; transition: color .2s, box-shadow .2s;
+  }
+  .chapter-rail b { font: 500 12px ui-monospace, "SF Mono", Menlo, monospace; }
+  .chapter-rail a:hover { color: var(--ink); }
+  .chapter-rail a[aria-current="step"] { color: var(--data); box-shadow: inset 0 -2px 0 var(--data); }
+}
+@media (max-width: 850px) {
+  .chapter-rail { display: none; }
+  .scene[data-star="R"] { padding-block: 70px; }
+}
+@media (max-width: 1350px) { .chapter-rail { margin-inline: 40px; } }
+@media (max-width: 1350px) and (min-width: 851px) { .chapter-rail { margin-inline: 40px; } }
+@media (prefers-reduced-motion: reduce) {
+  .chapter, .scene-copy > * { transform: none !important; opacity: 1 !important; }
+}

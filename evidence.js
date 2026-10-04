@@ -600,9 +600,9 @@
     const g = d.visual.gst;
     const cols = [
       [T(l, '중단 원인', 'Why it stopped', '中断の原因'), g[0] + ' · ' + g[1],
-        T(l, '과거 감사 경험에서 비롯된, 신청 보류로 이어진 신중론.',
-          'Caution from past audit experience had put the filing on hold.',
-          '過去の監査経験に由来する、申請保留につながった慎重論。')],
+        T(l, '과거의 컴플라이언스 우려에서 비롯된, 신청 보류로 이어진 신중론.',
+          'Caution from historical compliance concerns had put the filing on hold.',
+          '過去のコンプライアンス上の懸念に由来する、申請保留につながった慎重論。')],
       [T(l, '검증한 조건', 'What was verified', '検証した条件'), g[2] + ' · ' + g[3],
         T(l, '현지 자문·유사 사례·복수 전문가 의견으로 실행 요건을 구체화.',
           'Local advice, comparable cases and multiple expert opinions turned it into concrete conditions.',
@@ -724,11 +724,11 @@
    * ------------------------------------------------------------------ */
   function pocScope(l) {
     const team = [
-      [T(l, '오퍼레이션 매니저 · 기초 설계', 'Ops manager · base design', 'オペレーションマネージャー・基本設計'),
+      [T(l, '오퍼레이션 리더십 · 기초 설계', 'Operations leadership · base design', 'オペレーション責任者・基本設計'),
         T(l, '분류 체계 · 심각도 · 전체 구조', 'Taxonomy, severity and overall structure', '分類体系・重大度・全体構造')],
       [T(l, 'IT 담당', 'IT', 'IT担当'),
         T(l, '환경 프로비저닝 · 권한', 'Environment provisioning and access', '環境プロビジョニング・権限付与')],
-      [T(l, '운영 담당', 'Operations lead', 'オペレーション担当'),
+      [T(l, '운영팀 담당', 'Operations team member', 'オペレーションチーム担当'),
         T(l, '대표 문의 유형 조사', 'Survey of representative query types', '代表的な照会類型の調査')],
       [T(l, '규제 담당', 'Regulatory reviewer', '規制担当'),
         T(l, '심각도 기준 감수', 'Review of severity criteria', '重大度基準のレビュー')]

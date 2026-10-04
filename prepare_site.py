@@ -19,11 +19,13 @@ public = root / '_site'
 if public.exists():
     shutil.rmtree(public)
 public.mkdir()
-for name in ('index.html', 'trade.html', 'compliance.html'):
+PAGES = ('logistics.html', 'cost.html', 'triage.html')
+# Old addresses stay alive as redirect stubs that carry the same link preview.
+REDIRECTS = {'index.html': 'logistics.html', 'trade.html': 'cost.html', 'compliance.html': 'triage.html'}
+image = escape(site_url + 'social-preview.png', quote=True)
+for name, target in [(n, n) for n in PAGES] + list(REDIRECTS.items()):
     source = (root / name).read_text()
-    page_url = site_url if name == 'index.html' else site_url + name
-    url = escape(page_url, quote=True)
-    image = escape(site_url + 'social-preview.png', quote=True)
+    url = escape(site_url + target, quote=True)
     source = source.replace('content="./social-preview.png"', f'content="{image}"')
     source = source.replace('</head>', '\n'.join([
         f'<link rel="canonical" href="{url}">',
@@ -37,4 +39,4 @@ for name in ('social-preview.png', 'warehouse.html', 'warehouse.js', 'dashboard.
 # Explicit allowlist: never copy original uploads or private source media.
 
 (public / '.nojekyll').touch()
-print('Prepared both case pages, shared styles, media and absolute HTTPS metadata.')
+print('Prepared the three case pages, redirect stubs, shared styles, media and absolute HTTPS metadata.')

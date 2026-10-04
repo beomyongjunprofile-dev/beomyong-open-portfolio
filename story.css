@@ -75,10 +75,7 @@ html[lang=ko] .kpi-cap,html[lang=ja] .kpi-cap{max-width:12em;overflow-wrap:break
 @media(max-width:480px){.kpi-band,.closing{margin-inline:22px}.kpi-inner{padding:22px 20px}.kpi-num{font-size:40px}.kpi-item.is-text .kpi-num{font-size:20px}}
 
 .closing{padding:24px 0 84px}
-.closing-head{margin-bottom:28px}
-.closing-eyebrow,.closing-label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.closing-eyebrow{color:var(--data);margin-bottom:10px}
-.closing h2{font-size:clamp(24px,2.4vw,32px);line-height:1.25;margin:0}
+.closing-label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .closing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .closing-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px}
 .closing-label{color:var(--muted);margin-bottom:12px}

@@ -93,7 +93,7 @@
       {
         team: T(l, 'A부서', 'Team A', 'A部門'),
         steps: [
-          T(l, '사내 BI에서 수작업 쿼리', 'Manual query in the BI tool', '社内BIで手動クエリ'),
+          T(l, '수작업 추출', 'Manual extraction', '手作業で抽出'),
           T(l, '추출 결과를 엑셀로 이동', 'Copy the extract into Excel', '抽出結果をExcelへ'),
           T(l, '엑셀 함수로 비용 정리', 'Assemble costs with Excel formulas', 'Excel式で費用を集計'),
           T(l, '기간·배분 기준 A', 'Period and allocation basis A', '期間・配賦基準 A')
@@ -102,7 +102,7 @@
       {
         team: T(l, 'B부서', 'Team B', 'B部門'),
         steps: [
-          T(l, '부서 데이터베이스에서 쿼리', 'Query the team database', '部門DBでクエリ'),
+          T(l, '별도 방식으로 추출', 'Separate extraction', '別の方式で抽出'),
           T(l, '데이터베이스 안에서 비용 계산', 'Calculate cost inside the database', 'DB内で費用計算'),
           T(l, '결과를 엑셀로 출력', 'Export the result to Excel', '結果をExcelへ出力'),
           T(l, '기간·배분 기준 B', 'Period and allocation basis B', '期間・配賦基準 B')
@@ -185,7 +185,7 @@
     ];
 
     const owners = [
-      [T(l, 'BI 관리자', 'BI owner', 'BI管理者'),
+      [T(l, '모델 관리자', 'Model owner', 'モデル管理者'),
         T(l, '모델 · 변경 관리', 'Model and change control', 'モデル・変更管理')],
       [T(l, '업무 담당자', 'Business owner', '業務担当'),
         T(l, 'KPI · 목표 · 실행 과제 정의', 'KPI, target and action definitions', 'KPI・目標・施策の定義')],
@@ -224,7 +224,7 @@
     const cases = [
       [T(l, '관세·부가세 환급', 'Duty / VAT Recovery', '関税・付加価値税還付'), v[0], v[1]],
       [T(l, '상품 가치 재산정', 'Product Value Allocation', '商品価値の再評価'), v[2], v[3]],
-      [T(l, '조달 원산지', 'Sourcing Origin', '調達原産地'), v[4], v[5]],
+      [T(l, '조달', 'Sourcing', '調達'), v[4], v[5]],
       [T(l, '이상치·준수 관리', 'Anomaly / Compliance Control', '異常値・遵守管理'), c[4], c[5]]
     ];
     /* digit count of each published figure (language-independent); the last
@@ -290,7 +290,7 @@
       [T(l, '현장 준비', 'Site readiness', '現場準備'), 20, 80, 'open',
         T(l, '전원 · 배선 · 시설 요건 미충족', 'Power, cabling and facility-condition gaps', '電源・配線・施設条件が未充足')],
       [T(l, '협력사 확정', 'Partners confirmed', '協力会社確定'), 40, 74, 'open',
-        T(l, '단가 · 물량 조건 재협의', 'Rate and volume terms under renegotiation', '単価・物量条件の再協議')],
+        T(l, '상업 조건 재검토', 'Commercial terms under review', '商務条件の再検討')],
       [T(l, '테스트 · 전환', 'Test / cutover', 'テスト・切替'), 78, 84, 'risk',
         T(l, '작업 정의 · 의존 관계 미정', 'Work and dependencies undefined', '作業定義・依存関係が未定')]
     ];
@@ -374,7 +374,7 @@
     ];
     const judgements = [
       T(l, '가동 필수 범위 보호', 'Protected the launch-critical scope', '稼働必須範囲を保護'),
-      T(l, '계약·사양의 계산 기준 정렬', 'Aligned the calculation basis in contracts and specifications', '契約・仕様の算定基準を整合'),
+      T(l, '상업 조건·사양의 계산 기준 정렬', 'Aligned the calculation basis across commercial terms and specifications', '商務条件・仕様の算定基準を整合'),
       T(l, '지연·추가 요구의 조기 결정', 'Decided on delays and additional requests early', '遅延・追加要求を早期に決定')
     ];
 
@@ -476,8 +476,8 @@
    * ------------------------------------------------------------------ */
   function commercial(d, l) {
     const cost = [
-      [T(l, '인원', 'Staffing', '人員'),
-        T(l, '상시 인원 기준', 'Standing headcount', '常時人員基準'),
+      [T(l, '투입 자원', 'Resourcing', '投入リソース'),
+        T(l, '상시 투입 기준', 'Standing basis', '常時投入基準'),
         T(l, '범위 · 투입 기준 정렬', 'Aligned scope and deployment basis', '範囲・投入基準を整合'), true],
       [T(l, '작업량', 'Workload', '作業量'),
         T(l, '피크 기준 추정', 'Estimated at peak', 'ピーク基準の推定'),
@@ -507,7 +507,7 @@
     </svg>`;
 
     return `<div class="ev ev-inline">
-      ${head(T(l, '창고 운영업체 · 단가 구조', 'Warehouse operator · cost structure', '倉庫運営業者・単価構造'),
+      ${head(T(l, '운영 파트너 · 단가 구조', 'Operating partner · cost structure', '運営パートナー・単価構造'),
       T(l, '단가 협상이 아니라 계산 전제를 맞추는 작업.',
         'Not a discount negotiation — aligning calculation premises.',
         '値下げ交渉ではなく、算定前提を揃える作業。'))}
@@ -524,7 +524,7 @@
         </tr>`).join('')}</tbody>
       </table></div>
       <div class="ev-block">
-        ${head(T(l, '별도 운영업체 · 물량 판단', 'Operations partner · volume', '別の委託先・物量判断'),
+        ${head(T(l, '협력사 · 물량 가정 판단', 'Partner · volume assumption', '協力会社・物量前提の判断'),
       T(l, '계절성과 향후 유입을 함께 본 저물량 판단.',
         'A low month, seen against seasonality and future inflow.',
         '季節性と今後の流入から見た低物量判断。'))}
@@ -533,7 +533,7 @@
           <tbody>
             <tr><th scope="row">${esc(T(l, '분리한 것', 'Separated', '分離した点'))}</th><td>${esc(T(l, '계절성 ↔ 연간 수요', 'Seasonality ↔ annual demand', '季節性 ↔ 年間需要'))}</td></tr>
             <tr><th scope="row">${esc(T(l, '제시한 것', 'Presented', '提示した点'))}</th><td>${esc(T(l, '향후 업무별 규모 · 시기 · 가치', 'Future work by volume, timing and value', '今後の業務別の規模・時期・価値'))}</td></tr>
-            <tr><th scope="row">${esc(T(l, '연결한 결정', 'Decision reached', '接続した決定'))}</th><td>${esc(T(l, '경영진 협의 · 협력 지속', 'Leadership alignment · support continued', '経営層との協議・協力継続'))}</td></tr>
+            <tr><th scope="row">${esc(T(l, '연결한 결정', 'Decision reached', '接続した決定'))}</th><td>${esc(T(l, '협의 · 협력 지속', 'Alignment · support continued', '協議・協力継続'))}</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -585,10 +585,7 @@
       <div class="ev-block">
         <div class="ev-steps is-flow">${budget.map((b, i) => `
           <div class="ev-step" data-ev style="--i:${3 + i}"><i>0${i + 1}</i><strong>${esc(b)}</strong></div>`).join('')}</div>
-        <p class="ev-sub" style="margin-top:12px">${esc(T(l,
-      'ROI 변동 약 10% 이내는 검토·관리 기준으로, 달성한 절감률과는 별개.',
-      'Keeping ROI variation within roughly 10% was a review criterion, not an achieved saving.',
-      'ROI変動およそ10%以内は検証・管理の基準であり、達成した削減率とは別物。'))}</p>
+        <p class="ev-sub" style="margin-top:12px">${esc(T(l, 'ROI 변동을 정해 둔 범위 안에서 관리하는 것은 검토·관리 기준으로, 달성한 절감률과는 별개.', 'Keeping ROI variation within a defined range was a review criterion, not an achieved saving.', 'ROI変動を定めた範囲内に収めることは検証・管理の基準であり、達成した削減率とは別物。'))}</p>
       </div>
     </div>`;
   }
@@ -604,9 +601,7 @@
           'Caution from historical compliance concerns had put the filing on hold.',
           '過去のコンプライアンス上の懸念に由来する、申請保留につながった慎重論。')],
       [T(l, '검증한 조건', 'What was verified', '検証した条件'), g[2] + ' · ' + g[3],
-        T(l, '현지 자문·유사 사례·복수 전문가 의견으로 실행 요건을 구체화.',
-          'Local advice, comparable cases and multiple expert opinions turned it into concrete conditions.',
-          '現地助言・類似事例・複数の専門家意見で実行要件を具体化。')],
+        T(l, '외부 자문·유사 사례·복수 전문가 의견으로 실행 요건을 구체화.', 'External advice, comparable cases and multiple expert opinions turned it into concrete conditions.', '外部助言・類似事例・複数の専門家意見で実行要件を具体化。')],
       [T(l, '변경한 운영', 'What changed', '変更した運用'), g[4] + ' · ' + g[5],
         T(l, '정기 신청 주기와 ERP 기록 보존을 프로세스로 고정.',
           'A recurring filing cadence and ERP record retention were fixed into the process.',
@@ -637,7 +632,7 @@
   function leverCard(d, l) {
     const v = d.visual.levers;
     return `<div class="ev ev-inline">
-      ${head(T(l, '가치 배분과 조달 원산지', 'Value allocation and sourcing origin', '価値配分と調達原産地'),
+      ${head(T(l, '가치 배분과 조달', 'Value allocation and sourcing', '価値配分と調達'),
       T(l, '가치의 삭제가 아니라, 문서와 본체 사이의 귀속을 실제 기능에 맞춘 조정. 값은 지수.',
         'Value was not removed; its attribution between document and unit was matched to where the function actually sits. Values are indexed.',
         '価値の削除ではなく、文書と本体の帰属を実際の機能に合わせた調整。値は指数。'))}
@@ -650,10 +645,7 @@
         <div data-ev style="--i:2"><span>${esc(v[1])}</span><strong>${esc(orderOfMagnitude(8, l))}</strong></div>
         <div data-ev style="--i:3"><span>${esc(v[3])}</span><strong>${esc(orderOfMagnitude(8, l))}</strong></div>
       </div>
-      <p class="ev-sub" data-ev style="--i:4;margin-top:14px">${esc(T(l,
-      '조달 원산지는 가격 인하가 아니라, 대안 원산지의 관세 부담과 실행 가능성을 비교해 내린 선택.',
-      'Sourcing origin was chosen by comparing tariff exposure and feasibility across alternatives, not by asking for a lower price.',
-      '調達原産地は値下げではなく、代替原産地の関税リスクと実行可能性を比較して選択。'))}</p>
+      <p class="ev-sub" data-ev style="--i:4;margin-top:14px">${esc(T(l, '조달은 가격 인하가 아니라, 대안별 관세 부담과 실행 가능성을 비교해 내린 선택.', 'Sourcing was chosen by comparing tariff exposure and feasibility across alternatives, not by asking for a lower price.', '調達は値下げではなく、代替案ごとの関税リスクと実行可能性を比較して選択。'))}</p>
     </div>`;
   }
 
@@ -667,7 +659,7 @@
       <p class="ev-h" data-ev>${esc(c[3])}</p>
       <div class="ev-scale">
         ${scaleRow(T(l, '기준 세율 관세 (지수)', 'Baseline duty (index)', '基準関税（指数）'), bar(0, 100, 'is-ghost', '100'), 0)}
-        ${scaleRow(T(l, '협정 적용 후 (지수)', 'After agreement (index)', '協定適用後（指数）'), bar(0, 74, 'is-strong', '74'), 1)}
+        ${scaleRow(T(l, '적용 후 (지수)', 'After eligibility (index)', '適用後（指数）'), bar(0, 74, 'is-strong', '74'), 1)}
         ${scaleRow(T(l, '측정된 효과', 'Measured benefit', '測定された効果'), bar(74, 100, 'is-ok', ''), 2)}
       </div>
       <div class="ev-kv" style="margin-top:16px">
@@ -707,9 +699,7 @@
     return fig('backlog',
       head(
         T(l, '두 갈래로 쌓이는 확인 대기열', 'A backlog stacking up on two fronts', '二方向に積み上がる確認待ちキュー'),
-        T(l, '처리 여력을 보강했지만 중앙 팀 회신 대기 큐와 고객 응대 큐가 함께 늘어나, 처리보다 관리 자체가 더 큰 부담으로 작용.',
-          'Capacity was added, but the central follow-up queue and the customer queue kept growing together, until managing them became the real burden.',
-          '処理余力を補強しても、中央部門の回答待ちキューと顧客対応キューが共に膨らみ、処理より管理そのものが重荷に。')
+        T(l, '처리 여력을 보강했지만 전문 팀 회신 대기 큐와 고객 응대 큐가 함께 늘어나, 처리보다 관리 자체가 더 큰 부담으로 작용.', 'Capacity was added, but the specialist follow-up queue and the customer queue kept growing together, until managing them became the real burden.', '処理余力を補強しても、専門部門の回答待ちキューと顧客対応キューが共に膨らみ、処理より管理そのものが重荷に。')
       ) +
       `<div data-ev>${chart}</div>` +
       `<div class="ev-kv" style="margin-top:16px">
@@ -724,11 +714,11 @@
    * ------------------------------------------------------------------ */
   function pocScope(l) {
     const team = [
-      [T(l, '오퍼레이션 리더십 · 기초 설계', 'Operations leadership · base design', 'オペレーション責任者・基本設計'),
+      [T(l, '오퍼레이션 · 기초 설계', 'Operations · base design', 'オペレーション・基本設計'),
         T(l, '분류 체계 · 심각도 · 전체 구조', 'Taxonomy, severity and overall structure', '分類体系・重大度・全体構造')],
       [T(l, 'IT 담당', 'IT', 'IT担当'),
         T(l, '환경 프로비저닝 · 권한', 'Environment provisioning and access', '環境プロビジョニング・権限付与')],
-      [T(l, '운영팀 담당', 'Operations team member', 'オペレーションチーム担当'),
+      [T(l, '운영팀', 'Operations team', 'オペレーションチーム'),
         T(l, '대표 문의 유형 조사', 'Survey of representative query types', '代表的な照会類型の調査')],
       [T(l, '규제 담당', 'Regulatory reviewer', '規制担当'),
         T(l, '심각도 기준 감수', 'Review of severity criteria', '重大度基準のレビュー')]
@@ -747,7 +737,7 @@
       </div>` +
       `<div class="ev-kv" style="margin-top:16px">
         <div data-ev style="--i:5"><span>${esc(T(l, '환경 구성', 'Environment setup', '環境構築'))}</span><strong>${esc(T(l, 'IT 프로비저닝 · 짧은 셋업 기간', 'IT provisioning · short setup cycle', 'IT環境構築・短い準備期間'))}</strong></div>
-        <div data-ev style="--i:6"><span>${esc(T(l, '제공된 환경', 'Platform provided', '提供された環境'))}</span><strong>${esc(T(l, '사내 인프라 RAG 챗봇 · 지정 문서 포털 소스', 'In-house RAG chatbot · designated document-portal source', '社内基盤のRAGチャットボット・指定文書ポータルをソースに'))}</strong></div>
+        <div data-ev style="--i:6"><span>${esc(T(l, '제공된 환경', 'Platform provided', '提供された環境'))}</span><strong>${esc(T(l, 'RAG 챗봇 · 지정 문서 소스', 'RAG chatbot · curated document source', 'RAGチャットボット・指定文書ソース'))}</strong></div>
       </div>`, l);
   }
 
@@ -790,9 +780,9 @@
         <pre><code>${yaml}</code></pre>
       </div>
       <div class="ev-kv" style="margin-top:16px">
-        <div data-ev style="--i:1"><span>${esc(T(l, '원문 형식 (PoC)', 'Source format (PoC)', '原文形式（PoC）'))}</span><strong>${esc(T(l, '카테고리별 Word 문서 · YAML은 스키마만 차용', 'Word files by category · YAML used as schema only', 'カテゴリ別Word文書・YAMLはスキーマのみ採用'))}</strong></div>
+        <div data-ev style="--i:1"><span>${esc(T(l, '원문 형식 (PoC)', 'Source format (PoC)', '原文形式（PoC）'))}</span><strong>${esc(T(l, '카테고리별 문서 · 스키마 기반 메타데이터', 'Category-based documents · schema-only metadata', 'カテゴリ別文書・スキーマのみのメタデータ'))}</strong></div>
         <div data-ev style="--i:2"><span>${esc(T(l, '버전 관리', 'Versioning', 'バージョン管理'))}</span><strong>${esc(T(l, '규제 개정·사내 정책 변경을 버전으로 반영', 'Rule and policy changes shipped as new versions', '規制改正・社内ポリシー変更をバージョンで反映'))}</strong></div>
-        <div data-ev style="--i:3"><span>${esc(T(l, '정식화 계획', 'Next step at rollout', '本格導入時の計画'))}</span><strong>${esc(T(l, 'Markdown 전환으로 청킹 최적화', 'Move sources to Markdown to optimise chunking', 'Markdown化でチャンキングを最適化'))}</strong></div>
+        <div data-ev style="--i:3"><span>${esc(T(l, '정식화 계획', 'Next step at rollout', '本格導入時の計画'))}</span><strong>${esc(T(l, '원문 구조 정비로 청킹 최적화', 'Restructure sources to optimise chunking', '原文の構造整理でチャンキングを最適化'))}</strong></div>
       </div>
     </div>`;
   }
@@ -869,7 +859,7 @@
         </tr></thead>
         <tbody>
           <tr><th scope="row">${esc(T(l, '한 질문에 규제 두 개가 섞임', 'One question spanning two regulations', '一つの質問に規制が二つ絡む'))}</th><td>${esc(T(l, '다중 규제 태그 추가', 'Added a multi-regulation tag', '複数規制タグを追加'))}</td></tr>
-          <tr><th scope="row">${esc(T(l, '국가별 명칭 차이', 'Country-specific naming variant', '国別の呼称の違い'))}</th><td>${esc(T(l, '지역별 별칭 목록 추가', 'Added a regional alias list', '地域別エイリアスリストを追加'))}</td></tr>
+          <tr><th scope="row">${esc(T(l, '명칭 표기 차이', 'Naming variants across sources', '呼称表記の違い'))}</th><td>${esc(T(l, '별칭 목록 추가', 'Added an alias list', 'エイリアスリストを追加'))}</td></tr>
           <tr><th scope="row">${esc(T(l, '원문 번역 표현 차이', 'Translation variance in source documents', '原文の翻訳表現の差異'))}</th><td>${esc(T(l, '원문 문서에 수정 플래그 표시', 'Flagged the source document for correction', '原文書に修正フラグを表示'))}</td></tr>
         </tbody>
       </table></div>
@@ -963,13 +953,13 @@
   function cutoverCard(l) {
     const practices = [
       [T(l, '단계적 전환', 'Phased rollout', '段階的な切替'),
-        T(l, '하루 대량 전환 대신 제품군별로 분할 이전', 'Split by product group instead of one big-bang date', '品目群別に分割移行し一括移行を回避')],
+        T(l, '하루 대량 전환 대신 단계적으로 분할 이전', 'Phased rather than one big-bang date', '一括移行ではなく段階的に分割移行')],
       [T(l, '병행 운영 (블루-그린)', 'Parallel run (blue-green)', '並行運用（ブルーグリーン）'),
-        T(l, '임시 공유 ERP로 신구 창고 동시 출하 유지', 'A temporary shared ERP kept both warehouses shipping', '一時共有ERPで新旧倉庫の同時出荷を維持')],
+        T(l, '시스템 병행 운영으로 신구 거점 동시 출하 유지', 'Parallel systems kept both sites shipping', 'システム並行運用で新旧拠点の同時出荷を維持')],
       [T(l, '테스트 커버리지', 'Test coverage', 'テストカバレッジ'),
-        T(l, '예상 외 케이스 포함 약 200개 시나리오 검증', '~200 positive, negative and edge-case scenarios verified', '想定外を含む約200シナリオを検証')],
+        T(l, '예상 외 케이스까지 폭넓게 시나리오 검증', 'A wide range of positive, negative and edge-case scenarios verified', '想定外を含む幅広いシナリオを検証')],
       [T(l, '롤백 대비', 'Rollback readiness', 'ロールバック対応'),
-        T(l, '전환 구간 내내 백업 서버 가동', 'A backup server stayed live through the cutover window', '切替期間中バックアップサーバーを稼働')]
+        T(l, '전환 구간 내내 대체 환경 가동', 'A fallback environment stayed live through the cutover window', '切替期間中、代替環境を稼働')]
     ];
     return `<div class="ev ev-inline">
       ${head(T(l, '라이브 마이그레이션처럼 다룬 물리적 이전', 'A physical relocation, handled like a live migration', 'ライブマイグレーションの規律で扱った物理的な移転'),
@@ -1107,7 +1097,7 @@
             T(l, '계획대로 진행', 'Proceed as planned', '計画どおり進行')],
           infra: [T(l, '설비 작업 · 인터페이스 · 통합 테스트 · 전환', 'Equipment · interface · integration test · cutover', '設備・IF・統合テスト・切替'),
             T(l, '가동 필수 범위와 후속 개선의 경계', 'The line between launch-critical and follow-on', '稼働必須と後続改善の境界'),
-            T(l, '범위 축소 · 인원 추가 · 후속 단계화', 'Reduce scope · add resource · phase it after launch', '範囲縮小・人員追加・稼働後に段階化')],
+            T(l, '범위 축소 · 자원 추가 · 후속 단계화', 'Reduce scope · add resource · phase it after launch', '範囲縮小・リソース追加・稼働後に段階化')],
           validation: [T(l, '통합 테스트 · 전환', 'Integration test · cutover', '統合テスト・切替'),
             T(l, '검증 범위와 승인 경로', 'Validation scope and approval path', '検証範囲と承認経路'),
             T(l, '검증 병행 · 전환 창 조정', 'Run validation in parallel · adjust the cutover window', '検証を並行・切替枠を調整')]

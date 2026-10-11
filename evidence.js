@@ -3,7 +3,7 @@
  * Replaces the shared "rounded boxes and arrows" diagram with one exhibit per
  * section, each built to prove the specific thing that section claims:
  *   fragment     two toolchains that cannot produce a comparable number
- *   platform     what was standardised, and who owns it
+ *   platform     what was standardized, and who owns it
  *   cost-result  the four-step improvement loop, per applied case
  *   risks        one fixed launch date against two versions of readiness
  *   scope        parallel workstreams that must clear one launch decision
@@ -197,7 +197,7 @@
       head(
         T(l, '분산된 계산을 하나의 기반으로', 'From scattered calculations to one foundation', '分散した算定を一つの基盤へ'),
         T(l, '표준화 대상은 도구가 아니라 계산 정의와 그 관리 책임.',
-          'What was standardised is the definition and its ownership, not the tool.',
+          'What was standardized is the definition and its ownership, not the tool.',
           '標準化したのは道具ではなく、算定定義とその管理責任。')
       ) +
       `<div class="ev-stack">${layers.map((x, i) => (i ? '<div class="ev-down" data-ev style="--i:' + i + '">↓</div>' : '') +
@@ -370,9 +370,9 @@
     const stages = [
       T(l, '이전 전', 'Before the move', '移行前'),
       T(l, '컷오버', 'Cutover', '切替'),
-      T(l, '안정화', 'Stabilised', '安定化')
+      T(l, '안정화', 'Stabilized', '安定化')
     ];
-    const judgements = [
+    const judgments = [
       T(l, '가동 필수 범위 보호', 'Protected the launch-critical scope', '稼働必須範囲を保護'),
       T(l, '상업 조건·사양의 계산 기준 정렬', 'Aligned the calculation basis across commercial terms and specifications', '商務条件・仕様の算定基準を整合'),
       T(l, '지연·추가 요구의 조기 결정', 'Decided on delays and additional requests early', '遅延・追加要求を早期に決定')
@@ -380,7 +380,7 @@
 
     const line = `<svg viewBox="0 0 620 96" role="img" aria-label="${esc(T(l,
       '이전 전부터 안정화까지 끊기지 않는 출하 연속성을 나타낸 개념 선',
-      'Conceptual line showing uninterrupted shipping from before the move through stabilisation',
+      'Conceptual line showing uninterrupted shipping from before the move through stabilization',
       '移行前から安定化まで途切れない出荷継続を示す概念線'))}">
       <path d="M14 58H606" stroke="var(--ok)" stroke-width="2.5" fill="none"/>
       ${[14, 310, 606].map((x, i) => `<circle cx="${x}" cy="58" r="5" fill="var(--ok)"/>
@@ -414,7 +414,7 @@
       </div>` +
       `<div class="ev-block">
         <p class="ev-h" data-ev style="--i:5">${esc(T(l, '결과를 만든 판단', 'The decisions behind the result', '結果を生んだ判断'))}</p>
-        <div class="ev-kv">${judgements.map((j, i) => `
+        <div class="ev-kv">${judgments.map((j, i) => `
           <div data-ev style="--i:${6 + i}"><span>0${i + 1}</span><strong>${esc(j)}</strong></div>`).join('')}</div>
       </div>`, l);
   }
@@ -782,7 +782,7 @@
       <div class="ev-kv" style="margin-top:16px">
         <div data-ev style="--i:1"><span>${esc(T(l, '원문 형식 (PoC)', 'Source format (PoC)', '原文形式（PoC）'))}</span><strong>${esc(T(l, '카테고리별 문서 · 스키마 기반 메타데이터', 'Category-based documents · schema-only metadata', 'カテゴリ別文書・スキーマのみのメタデータ'))}</strong></div>
         <div data-ev style="--i:2"><span>${esc(T(l, '버전 관리', 'Versioning', 'バージョン管理'))}</span><strong>${esc(T(l, '규제 개정·사내 정책 변경을 버전으로 반영', 'Rule and policy changes shipped as new versions', '規制改正・社内ポリシー変更をバージョンで反映'))}</strong></div>
-        <div data-ev style="--i:3"><span>${esc(T(l, '정식화 계획', 'Next step at rollout', '本格導入時の計画'))}</span><strong>${esc(T(l, '원문 구조 정비로 청킹 최적화', 'Restructure sources to optimise chunking', '原文の構造整理でチャンキングを最適化'))}</strong></div>
+        <div data-ev style="--i:3"><span>${esc(T(l, '정식화 계획', 'Next step at rollout', '本格導入時の計画'))}</span><strong>${esc(T(l, '원문 구조 정비로 청킹 최적화', 'Restructure sources to optimize chunking', '原文の構造整理でチャンキングを最適化'))}</strong></div>
       </div>
     </div>`;
   }
@@ -833,8 +833,8 @@
 
   function qualityLoopCard(l) {
     const loop = [
-      [T(l, '판단 로그 → BI', 'Judgement logs → BI', '判断ログ→BI'),
-        T(l, '모든 판단의 confidence · needs_HITL을 Power BI로 집계', 'confidence and needs_HITL on every judgement, aggregated in Power BI', '全判断のconfidence・needs_HITLをPower BIに集計')],
+      [T(l, '판단 로그 → BI', 'Judgment logs → BI', '判断ログ→BI'),
+        T(l, '모든 판단의 confidence · needs_HITL을 BI로 집계', 'confidence and needs_HITL on every judgment, aggregated in BI', '全判断のconfidence・needs_HITLをBIに集計')],
       [T(l, '답변 로그 → 문의 태그', 'Answers → inquiry tags', '回答→問い合わせタグ'),
         T(l, '실제 규제 답변은 분류 태그로 추출해 검토', 'Actual regulatory answers pulled by classification tag for review', '実際の規制回答は分類タグで抽出しレビュー')],
       [T(l, '현장 반응 → 원인 분석', 'Field flags → root cause', '現場フラグ→原因分析'),
@@ -865,7 +865,7 @@
       </table></div>
       <div class="ev-kv" data-ev style="--i:6;margin-top:16px">
         <div data-ev style="--i:6"><span>${esc(T(l, 'HITL 준수', 'HITL adherence', 'HITL遵守'))}</span><strong>${esc(T(l, '정해진 단계 밖 임의 답변 없음 확인', 'Checked for any answer given outside the tiered flow', '定められた段階外の任意回答がないか点検'))}</strong></div>
-        <div data-ev style="--i:7"><span>${esc(T(l, 'Power BI 모니터링', 'Power BI monitoring', 'Power BIでの監視'))}</span><strong>${esc(T(l, 'needs_HITL 비율 · confidence 분포를 버전별로 추적', 'needs_HITL rate and confidence spread tracked per version', 'needs_HITL比率・confidence分布をバージョン別に追跡'))}</strong></div>
+        <div data-ev style="--i:7"><span>${esc(T(l, 'BI 모니터링', 'BI monitoring', 'BIでの監視'))}</span><strong>${esc(T(l, 'needs_HITL 비율 · confidence 분포를 버전별로 추적', 'needs_HITL rate and confidence spread tracked per version', 'needs_HITL比率・confidence分布をバージョン別に追跡'))}</strong></div>
         <div data-ev style="--i:8"><span>${esc(T(l, '메타데이터 보강', 'Metadata reinforcement', 'メタデータ補強'))}</span><strong>${esc(T(l, '공백 발견 즉시 반영', 'Applied as soon as a gap was found', '欠落発見次第すぐ反映'))}</strong></div>
       </div>
     </div>`;

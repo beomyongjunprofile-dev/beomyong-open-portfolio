@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import os
 import shutil
 import json
+import re
 
 root = Path(__file__).resolve().parent
 review = root / 'media-review.json'
@@ -22,11 +23,15 @@ public.mkdir()
 PAGES = ('ops-cutover.html', 'cost-intelligence.html', 'ai-triage.html')
 # Old addresses stay alive as redirect stubs that carry the same link preview.
 REDIRECTS = {'index.html': 'ops-cutover.html', 'trade.html': 'cost-intelligence.html', 'compliance.html': 'ai-triage.html'}
-image = escape(site_url + 'social-preview.png', quote=True)
 for name, target in [(n, n) for n in PAGES] + list(REDIRECTS.items()):
     source = (root / name).read_text()
     url = escape(site_url + target, quote=True)
-    source = source.replace('content="./social-preview.png"', f'content="{image}"')
+    # each page names its own preview image as ./social-<page>.png
+    found = re.search(r'content="\./(social-[a-z-]+\.png)"', source)
+    if not found:
+        raise SystemExit(f'{name}: no link-preview image declared.')
+    image = escape(site_url + found.group(1), quote=True)
+    source = source.replace(found.group(0), f'content="{image}"')
     source = source.replace('</head>', '\n'.join([
         f'<link rel="canonical" href="{url}">',
         f'<meta property="og:url" content="{url}">',
@@ -34,7 +39,7 @@ for name, target in [(n, n) for n in PAGES] + list(REDIRECTS.items()):
         '</head>',
     ]))
     (public / name).write_text(source)
-for name in ('social-preview.png', 'warehouse.html', 'warehouse.js', 'dashboard.html', 'dashboard.css', 'dashboard.js', 'story.css', 'story.js', 'stories.js', 'exhibits.js', 'refinements.js', 'editorial.js', 'editorial.css', 'evidence.js', 'evidence.css', 'demo-languages.js'):
+for name in ('social-ops-cutover.png', 'social-cost-intelligence.png', 'social-ai-triage.png', 'warehouse.html', 'warehouse.js', 'dashboard.html', 'dashboard.css', 'dashboard.js', 'story.css', 'story.js', 'stories.js', 'exhibits.js', 'refinements.js', 'editorial.js', 'editorial.css', 'evidence.js', 'evidence.css', 'demo-languages.js'):
     shutil.copy2(root / name, public / name)
 # Explicit allowlist: never copy original uploads or private source media.
 

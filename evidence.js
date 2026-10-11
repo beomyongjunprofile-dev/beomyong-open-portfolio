@@ -35,15 +35,15 @@
   const head = (title, sub) =>
     `<p class="ev-h">${esc(title)}</p>` + (sub ? `<p class="ev-sub">${esc(sub)}</p>` : '');
 
-  /* Scale, described qualitatively: no amount, range or order of magnitude
-     is published. The digit-count argument is kept only so callers can still
-     rank cases; it selects a broad band word, never a figure. */
+  /* Scale, described in words instead of a number: "hundreds of millions
+     of yen" carries the order of magnitude and the unit without publishing
+     an exact figure. Digit count is fixed per case (language-independent). */
   const orderOfMagnitude = (n, l) => {
     const bands = {
-      7: T(l, '의미 있는 규모', 'Meaningful', '意味のある規模'),
-      8: T(l, '의미 있는 규모', 'Meaningful', '意味のある規模'),
-      9: T(l, '상당한 규모', 'Material', '相当な規模'),
-      10: T(l, '상당한 규모', 'Material', '相当な規模')
+      7: T(l, '수백만 엔대', 'millions of yen', '数百万円台'),
+      8: T(l, '수천만 엔대', 'tens of millions of yen', '数千万円台'),
+      9: T(l, '수억 엔대', 'hundreds of millions of yen', '数億円台'),
+      10: T(l, '수십억 엔대', 'billions of yen', '数十億円台')
     };
     return bands[n] || T(l, '비공개 범위', 'an undisclosed range', '非公開の範囲');
   };
@@ -704,7 +704,7 @@
       `<div data-ev>${chart}</div>` +
       `<div class="ev-kv" style="margin-top:16px">
         <div data-ev style="--i:1"><span>${esc(T(l, '대기열 추이', 'Queue trend', '待ちキューの推移'))}</span><strong>${esc(T(l, '증가 지속', 'Kept growing', '増加が継続'))}</strong></div>
-        <div data-ev style="--i:2"><span>${esc(T(l, '수작업 관리 부담', 'Manual management effort', '手作業の管理負荷'))}</span><strong>${esc(T(l, '상당한 수준', 'Significant', '相当な水準'))}</strong></div>
+        <div data-ev style="--i:2"><span>${esc(T(l, '수작업 관리 부담', 'Manual management effort', '手作業の管理負荷'))}</span><strong>${esc(T(l, '월 100시간 규모', '~100 hours / month', '月100時間規模'))}</strong></div>
         <div data-ev style="--i:3"><span>${esc(T(l, '고객 영향', 'Customer impact', '顧客への影響'))}</span><strong>${esc(T(l, '시급한 요청 발생', 'Time-sensitive requests', '緊急性の高い要請が発生'))}</strong></div>
       </div>`, l);
   }
@@ -894,8 +894,8 @@
       `<div class="ev-block">
         <p class="ev-h" data-ev style="--i:3">${esc(T(l, '관리 부담의 변화', 'Change in management load', '管理負荷の変化'))}</p>
         <div class="ev-kv">
-          <div data-ev style="--i:4"><span>${esc(T(l, '파일럿 이전', 'Before the pilot', 'パイロット以前'))}</span><strong>${esc(T(l, '상당한 수작업', 'Significant manual effort', '相当な手作業'))}</strong></div>
-          <div data-ev style="--i:5"><span>${esc(T(l, '확대 적용 시 전망', 'Projected at full scale', '本格展開時の見込み'))}</span><strong>${esc(T(l, '연간 상당한 시간 절감 가능성', 'Material annual time-saving potential', '年間で相当な時間削減の見込み'))}</strong></div>
+          <div data-ev style="--i:4"><span>${esc(T(l, '파일럿 이전', 'Before the pilot', 'パイロット以前'))}</span><strong>${esc(T(l, '월 100시간 규모', '~100 hours / month', '月100時間規模'))}</strong></div>
+          <div data-ev style="--i:5"><span>${esc(T(l, '확대 적용 시 전망', 'Projected at full scale', '本格展開時の見込み'))}</span><strong>${esc(T(l, '연간 수백 시간 절감 가능성', 'Hundreds of hours a year (potential)', '年間数百時間の削減見込み'))}</strong></div>
         </div>
       </div>`, l);
   }
@@ -957,7 +957,7 @@
       [T(l, '병행 운영 (블루-그린)', 'Parallel run (blue-green)', '並行運用（ブルーグリーン）'),
         T(l, '시스템 병행 운영으로 신구 거점 동시 출하 유지', 'Parallel systems kept both sites shipping', 'システム並行運用で新旧拠点の同時出荷を維持')],
       [T(l, '테스트 커버리지', 'Test coverage', 'テストカバレッジ'),
-        T(l, '예상 외 케이스까지 폭넓게 시나리오 검증', 'A wide range of positive, negative and edge-case scenarios verified', '想定外を含む幅広いシナリオを検証')],
+        T(l, '예상 외 케이스 포함 수백 개 시나리오 검증', 'Hundreds of positive, negative and edge-case scenarios verified', '想定外を含む数百シナリオを検証')],
       [T(l, '롤백 대비', 'Rollback readiness', 'ロールバック対応'),
         T(l, '전환 구간 내내 대체 환경 가동', 'A fallback environment stayed live through the cutover window', '切替期間中、代替環境を稼働')]
     ];
